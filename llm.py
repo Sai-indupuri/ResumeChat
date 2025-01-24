@@ -5,7 +5,7 @@ from langchain.prompts import PromptTemplate
 from langchain.schema import HumanMessage
 from langchain.output_parsers import StructuredOutputParser, ResponseSchema
 from langchain_core.exceptions import OutputParserException
-
+import streamlit as st
 OPENAI_API_KEY = st.secrets["openai"]["api_key"]
 
 def analyze_query_with_llm(query, chat_history):
