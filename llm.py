@@ -6,6 +6,7 @@ from langchain.schema import HumanMessage
 from langchain.output_parsers import StructuredOutputParser, ResponseSchema
 from langchain_core.exceptions import OutputParserException
 
+OPENAI_API_KEY = st.secrets["openai"]["api_key"]
 
 def analyze_query_with_llm(query, chat_history):
     """
@@ -87,7 +88,7 @@ def analyze_query_with_llm(query, chat_history):
     llm = ChatOpenAI(
         temperature=0.5,
         model="gpt-4o-mini",
-        openai_api_key=os.getenv("OPENAI_API_KEY")
+        openai_api_key=OPENAI_API_KEY
     )
     
     # Create the prompt with the user's query and history
@@ -124,7 +125,7 @@ def generate_response_with_llm(query, profile_details, chat_history, refinement_
     Returns:
         str: The generated response.
     """
-    llm = ChatOpenAI(model="gpt-4o-mini", openai_api_key=os.getenv("OPENAI_API_KEY"), temperature=0.7)
+    llm = ChatOpenAI(model="gpt-4o-mini", openai_api_key=OPENAI_API_KEY, temperature=0.7)
 
     # Format the chat history for the LLM
     formatted_history = "\n".join(
