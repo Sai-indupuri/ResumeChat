@@ -7,4 +7,3 @@ langchain-openai==0.2.14
 langchain-community==0.0.20
 langchain-core==0.3.29
 numpy==1.26.4
-futures==2.0.4
