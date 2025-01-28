@@ -8,7 +8,6 @@ import streamlit as st
 # SUPABASE_KEY = os.getenv('SUPABASE_KEY')
 supabase = create_client(st.secrets["supabase"]["url"], st.secrets["supabase"]["key"])
 
-
 def fetch_chunks_by_type(chunk_type):
     """
     Fetch chunks from the database for a specific chunk type.
@@ -20,43 +19,15 @@ def fetch_chunks_by_type(chunk_type):
         raise ValueError(f"Error fetching chunks for type {chunk_type}: {e}")
 
 
-def fetch_chunks_by_profile(profile_id):
+def fetch_chunks_for_profiles(profile_ids, chunk_type=None):
     """
-    Fetch all chunks for a specific profile ID.
+    Fetch chunks for a list of profile IDs and optionally filter by chunk type.
     """
+    query = supabase.table("vector_profile").select("*").in_("profile_id", profile_ids)
+    if chunk_type:
+        query = query.eq("chunk_type", chunk_type)
     try:
-        response = supabase.table("vector_profile").select("*").eq("profile_id", profile_id).execute()
-        return response
+        response = query.execute()
+        return response.data
     except Exception as e:
-        raise ValueError(f"Error fetching chunks for profile ID {profile_id}: {e}")
-
-
-def aggregate_profile_data(profile_ids):
-    """
-    Aggregate data for the given profile IDs into a structured format.
-
-    Args:
-        profile_ids (list): A list of profile IDs.
-
-    Returns:
-        dict: A dictionary where each key is a profile ID, and the value is aggregated data from all chunks.
-    """
-    profiles_data = {}
-    try:
-        for profile_id in profile_ids:
-            response = fetch_chunks_by_profile(profile_id)
-            chunks = response.data
-            aggregated_data = {}
-
-            # Aggregate chunks based on their types
-            for chunk in chunks:
-                chunk_type = chunk.get("chunk_type")
-                chunk_data = chunk.get("data")
-                if chunk_type and chunk_data:
-                    aggregated_data[chunk_type] = chunk_data
-
-            profiles_data[profile_id] = aggregated_data
-
-        return profiles_data
-    except Exception as e:
-        raise ValueError(f"Error aggregating profile data: {e}")
+        raise ValueError(f"Error fetching chunks for profile IDs {profile_ids}: {e}")
