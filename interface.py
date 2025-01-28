@@ -22,7 +22,7 @@ from tools import (
 
 # Streamlit app configuration
 st.set_page_config(page_title="RiseON Chatbot", layout="wide")
-st.image(r'.\ResumeChat\riseon.png',output_format='PNG',width=250)
+st.image('./ResumeChat/riseon.png',output_format='PNG',width=250)
 st.title("RiseON Resume Screening")
 # Initialize session states
 if "chat_history" not in st.session_state:
