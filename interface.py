@@ -3,7 +3,7 @@ import pandas as pd
 import streamlit as st
 from langchain.schema import HumanMessage, AIMessage
 import concurrent.futures as cf
-from database import fetch_chunks_by_profile
+from database import fetch_chunks_for_profiles
 from embeddings import generate_embedding
 from llm import analyze_query_with_llm, generate_response_with_llm
 from tools import (
@@ -22,8 +22,8 @@ from tools import (
 
 # Streamlit app configuration
 st.set_page_config(page_title="RiseON Chatbot", layout="wide")
-st.title("RiseON Resume Screening Chatbot")
-
+st.image(r'.\ResumeChat\riseon.png',output_format='PNG',width=250)
+st.title("RiseON Resume Screening")
 # Initialize session states
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = [AIMessage(content="Hi! How can I assist you?")]
@@ -37,11 +37,34 @@ if "requires_retrieval" not in st.session_state:
 if "requires_response_generation" not in st.session_state:
     st.session_state.requires_response_generation = True
 
+# Initialize profile_ids with a default list if not already set
+if "profile_ids" not in st.session_state:
+    st.session_state.profile_ids = [970, 1250, 1239, 1211, 1251, 1263, 1309, 1209, 1404, 1213,1371]
+
 # Sidebar controls
 with st.sidebar:
     st.button("Clear Chat", on_click=lambda: st.session_state.clear())
-    st.write("Chatbot for querying and screening resumes based on your requirements.")
+    st.markdown("### Example Queries")
+    st.write("Here are some examples you can try:")
+    st.markdown("""
+    - "Share the candidates who are freshers or have done internships."
+    - "Share the details of Sourabh Purwar and Amit Kumar."
+    - "Share the candidates who can be a good fit for web development roles."
+    - "Who has an MBA and AI skills?"
+    """)
 
+
+    # Add Company Information
+    st.markdown("### About Us")
+    st.write("Learn more about our products and services:")
+    
+    # Links to HappyPeopleAI and RiseON
+    st.markdown(
+        """
+        - [HappyPeopleAI](https://happypeopleai.com/)
+        - [RiseON](https://riseon.happypeopleai.com/)
+        """
+    )
 # Display chat history
 for message in st.session_state.chat_history:
     if isinstance(message, AIMessage):
@@ -52,40 +75,10 @@ for message in st.session_state.chat_history:
             st.write(message.content)
 
 
-
-# Function to extract and print profile IDs and names
-def print_matching_profiles(matching_profiles):
-    """
-    Print the matching profile IDs along with their first and last names.
-
-    Args:
-        matching_profiles (list): List of matching profile dictionaries with profile IDs and other details.
-    """
-    # print("\nMatching Profiles:")
-    for profile in matching_profiles:
-        profile_id = profile["profile_id"]
-        chunks = fetch_chunks_by_profile(profile_id).data
-        for chunk in chunks:
-            if chunk.get("chunk_type") == "profiles":
-                try:
-                    # Safely parse JSON data
-                    profile_data = json.loads(chunk["data"])
-                    # Access nested data dictionary safely
-                    data = profile_data.get("data", {})
-                    first_name = data.get("first_name", "N/A")
-                    last_name = data.get("last_name", "N/A")
-                    print(f"Profile ID: {profile_id}, Name: {first_name} {last_name}")
-                except (json.JSONDecodeError, AttributeError) as e:
-                    print(f"Error parsing profile data for Profile ID {profile_id}: {e}")
-
-
-
-# Functions
 def analyze_and_set_flags(user_query):
     """
     Analyze the user query to determine tools and limit.
     """
-    # Pass only the last message from the chat history
     last_message = st.session_state.chat_history[-1:]
     analysis = analyze_query_with_llm(user_query, last_message)
     tools = analysis["tools"]
@@ -93,11 +86,12 @@ def analyze_and_set_flags(user_query):
     return tools, limit
 
 
-def prepare_context_for_llm(chat_history, max_context_messages=2):
+def prepare_context_for_llm(chat_history, max_context_messages=1):
     """
     Prepare a limited chat context for the LLM.
     """
     return chat_history[-max_context_messages:]
+
 
 # User input handling
 user_query = st.chat_input("Type your message...")
@@ -112,14 +106,16 @@ if user_query:
 
     # Step 1: Retrieve profiles if needed
     matching_profiles = []
-    if st.session_state.requires_retrieval and tools:
+    profile_ids = st.session_state.profile_ids  # Get the profile IDs explicitly
+    if st.session_state.requires_retrieval and tools and profile_ids:
         with st.chat_message("AI"):
             with st.spinner("Fetching matching profiles..."):
                 query_embedding = generate_embedding(user_query)
                 all_results = []
 
-                def score_tool(tool):
-                    return tool_functions[tool]([query_embedding])
+                # Explicitly pass profile_ids to the thread function
+                def score_tool(tool, profile_ids):
+                    return tool_functions[tool](profile_ids, [query_embedding])
 
                 # Retrieve data using parallel execution
                 tool_functions = {
@@ -137,7 +133,7 @@ if user_query:
                 }
 
                 with cf.ThreadPoolExecutor(max_workers=5) as executor:
-                    future_to_tool = {executor.submit(score_tool, tool): tool for tool in tools}
+                    future_to_tool = {executor.submit(score_tool, tool, profile_ids): tool for tool in tools}
                     for future in cf.as_completed(future_to_tool):
                         tool = future_to_tool[future]
                         try:
@@ -157,35 +153,25 @@ if user_query:
                         profile_scores[profile_id] = [similarity]
 
                 matching_profiles = sorted(
-                    [{"profile_id": pid, "average_similarity": sum(scores) / len(scores)} 
-                    for pid, scores in profile_scores.items()],
+                    [{"profile_id": pid, "average_similarity": sum(scores) / len(scores)}
+                     for pid, scores in profile_scores.items()],
                     key=lambda x: x["average_similarity"],
                     reverse=True
                 )[:limit]
-                print("matching profiles:",matching_profiles)
                 st.session_state.matching_profiles = matching_profiles
-                print_matching_profiles(matching_profiles)
 
-
-    # Step 2: Generate response
+            # Step 2: Generate response
     with st.chat_message("AI"):
         with st.spinner("Generating response..."):
-            # Prepare context for the LLM
             recent_history = prepare_context_for_llm(st.session_state.chat_history, max_context_messages=2)
             profiles_data = [
-                {chunk["chunk_type"]: json.loads(chunk["data"]) 
-                 for chunk in fetch_chunks_by_profile(profile["profile_id"]).data}
+                {chunk["chunk_type"]: json.loads(chunk["data"])
+                for chunk in fetch_chunks_for_profiles([profile["profile_id"]])}  # Removed .data
                 for profile in st.session_state.matching_profiles
             ] if st.session_state.matching_profiles else []
 
-            # Generate response using the LLM
             response_stream = generate_response_with_llm(
                 user_query, profile_details=profiles_data, chat_history=recent_history
             )
         streamed_response = st.write_stream(response_stream)
-
-            # Append AI response to chat history
         st.session_state.chat_history.append(AIMessage(content=streamed_response))
-
-
-        
