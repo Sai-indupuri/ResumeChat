@@ -11,7 +11,7 @@ from llm import generate_response_with_llm
 OPENAI_API_KEY = st.secrets["openai"]["api_key"]
 
 # ✅ Load CSV Data
-CSV_FILE = r".\ResumeChat\updated_with_embeddings.csv"
+CSV_FILE = r"updated_with_embeddings.csv"
 df = pd.read_csv(CSV_FILE)
 
 # ✅ Convert JSON string embeddings back to lists
