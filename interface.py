@@ -1,7 +1,7 @@
 import json
 import numpy as np
 import pandas as pd
-import faiss
+# import faiss
 import streamlit as st
 from sklearn.metrics.pairwise import cosine_similarity
 from langchain_openai.embeddings import OpenAIEmbeddings
