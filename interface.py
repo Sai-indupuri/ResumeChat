@@ -93,17 +93,28 @@ def generate_html():
     return html_file_path
 
 
-# Sidebar: Generate and open HTML file dynamically
-if st.sidebar.button("📄 Open Profile Data in New Tab"):
-    with st.spinner("Generating Profile Data..."):
-        html_file = r'profile_data.html'
-        time.sleep(1)  # Small delay for a smooth experience
+github_url = "https://sai-indupuri.github.io/ResumeChat/profile_data.html"
 
-    # Open the file in a new browser tab
-    st.sidebar.markdown(f'<a href="{html_file}" target="_blank">Open Profile Data</a>', unsafe_allow_html=True)
+st.sidebar.markdown(
+    f"""
+    <a href="{github_url}" target="_blank">
+        <button style="
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: center;
+        ">📄 Open Profile Data</button>
+    </a>
+    """,
+    unsafe_allow_html=True
+)
 
-    # Success message
-    st.sidebar.success("Profile Data page opened in a new tab!")
 
 
 # Sidebar controls
