@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #F8F9FA;
+        }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .logo {
+            display: block;
+            margin: 0 auto;
+            height: 60px;
+        }
+
+        .table-container {
+            max-width: 90%;
+            margin: auto;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Search & Filter */
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .search-box, .filter-dropdown, .sort-dropdown {
+            padding: 8px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        /* Scrollable Table */
+        .scrollable-table {
+            max-height: 500px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        /* Table Header */
+        th {
+            background-color: #212529;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            position: sticky;
+            top: 0;
+        }
+
+        th:hover {
+            background-color: #333;
+        }
+
+        /* Alternating Row Colors */
+        tr:nth-child(even) {
+            background-color: #F8F9FA;
+        }
+
+        /* Summary Read More */
+        .summary {
+            max-height: 40px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .summary.expanded {
+            max-height: none;
+            -webkit-line-clamp: unset;
+            -webkit-box-orient: unset;
+        }
+
+        .read-more {
+            color: #FF9800;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 12px;
+            display: block;
+            margin-top: 5px;
+        }
+
+        .profile-link {
+            color: #FF9800;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .profile-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="ResumeChat/riseon.png" class="logo" alt="RiseON Logo"> 
+        <h2>Profile Data</h2>
+    </div>
+
+    <!-- Search & Filter Controls -->
+    <div class="table-container">
+        <div class="controls">
+            <input type="text" id="searchBox" class="search-box" placeholder="Search by Name or ID" onkeyup="searchTable()">
+            <select id="filterDropdown" class="filter-dropdown" onchange="filterTable()">
+                <option value="">Filter by Experience</option>
+                <option value="1">1+ Years</option>
+                <option value="5">5+ Years</option>
+                <option value="10">10+ Years</option>
+            </select>
+            <select id="sortExperienceDropdown" class="sort-dropdown" onchange="sortExperience()">
+                <option value="">Sort Experience</option>
+                <option value="asc">Ascending</option>
+                <option value="desc">Descending</option>
+            </select>
+        </div>
+
+        <div class="scrollable-table">
+            <table id="profileTable">
+                <thead>
+                    <tr>
+                        <th onclick="sortTable(0)">SL. No.</th>
+                        <th onclick="sortTable(1)">Profile ID</th>
+                        <th onclick="sortTable(2)">Name</th>
+                        <th>Summary</th>
+                        <th>Experience (Years)</th>
+                        <th>Profile Link</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+        <tr>
+            <td>1</td>  <!-- SL. No. -->
+            <td>644</td>
+            <td>Smita Garg </td>
+            <td>
+                <span id="summary-0" class="summary">Smita Garg is an accomplished Principal Engineer with over 13 years of extensive experience in software development and architecture, primarily in leading engineering teams at Dell EMC, Oracle, and PTC. She has a proven track record of delivering innovative solutions that align with business objectives and enhance operational efficiencies. At Dell EMC, Smita spearheaded the design and implementation of scalable software systems, mentored junior engineers, and contributed to strategic technology roadmaps, showcasing her leadership and collaborative skills.
+
+Smita's academic credentials include advanced coursework in Software Architecture, alongside certifications such as Certified ScrumMaster (CSM), which demonstrate her commitment to continuous learning and agile project management. Her technical proficiency encompasses advanced skills in Agile Methodologies, JIRA, and Git, with intermediate experience in Docker, Kubernetes, and Jenkins. 
+
+Her notable achievements include orchestrating the successful deployment of AI chatbot solutions that significantly improved customer engagement metrics and receiving the Excellence in Engineering Award for pioneering methodologies that enhanced product management initiatives at Dell EMC. Additionally, Smita has published impactful articles in IEEE Software and presented at international conferences, reflecting her thought leadership in software engineering.
+
+Fluent in both English and Hindi, she excels in communication, problem-solving, and mentorship. Smita is currently seeking opportunities as a Staff Engineer, Engineering Manager, or Senior Principal Engineer in Bengaluru, aiming to leverage her expertise to drive engineering excellence and innovation in a forward-thinking organization.</span>
+                <br>
+                <span id="btn-summary-0" class="read-more" onclick="toggleSummary('summary-0')">Read More</span>
+            </td>
+            <td>13 years 6 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/smita-garg/531/644?id=98112e94-c0af-47c1-9f63-fe912b8a250f" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>2</td>  <!-- SL. No. -->
+            <td>970</td>
+            <td>Amit Kumar </td>
+            <td>
+                <span id="summary-1" class="summary">Amit Kumar is a dynamic Product Leader with over 12 years of experience in driving innovation and executing strategic product initiatives. He holds a Postgraduate Diploma in Management (PGDM) with a focus on Marketing and Strategic Management from the Institute of Management Technology, Ghaziabad, and a Bachelor of Engineering in Electronics and Communications Technology from Manipal Institute of Technology. Amit's professional journey includes significant roles such as Co-founder and Director at Happy People AI, where he leads technological vision and strategy to foster innovation and scalability, and Product Manager at Aljazeera Media House, where he successfully launched products that increased user engagement by 30%.
+
+His expertise encompasses product strategy, digital marketing, market research, and user engagement analytics, complemented by proficiency in Agile methodologies and team leadership. Amit has managed cross-functional teams in various capacities, including as a Software Engineering Senior Analyst at Accenture and a Product Delivery Manager at Nowfloats Technology Limited, ensuring successful project implementations through effective stakeholder collaboration.
+
+Amit is certified as a Scrum Product Owner (CSPO) and is proficient in tools like JIRA and Cloud technologies. He is fluent in Hindi and English, with basic proficiency in Spanish. His commitment to mentoring and supporting environmental and educational causes highlights his dedication beyond professional realms. He is currently seeking opportunities that leverage his extensive background in product development and digital marketing, preferably in a challenging role within the technology or media sectors, ideally located in Hyderabad.</span>
+                <br>
+                <span id="btn-summary-1" class="read-more" onclick="toggleSummary('summary-1')">Read More</span>
+            </td>
+            <td>12 years 6 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/amit-kumar/521/970?id=84e09671-c773-486a-b47e-e54f993eb100" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>3</td>  <!-- SL. No. -->
+            <td>1185</td>
+            <td>Sandeep Kumar </td>
+            <td>
+                <span id="summary-2" class="summary">Sandeep Kumar is a seasoned banking professional with over 13 years of diverse experience in retail banking, audit, and compliance. Currently serving as a Senior Manager at Canara Bank, he excels in overseeing retail banking operations, managing audit processes, and driving growth across multiple branches, including rural locations. His leadership has significantly enhanced customer satisfaction and operational efficiency, underpinned by a strong focus on compliance with regulatory standards.
+
+Sandeep holds a Master of Business Administration in Finance from Symbiosis Institute of Business Management, Pune, and a Bachelor of Commerce specializing in Banking and Insurance from the University of Mumbai. He has also completed a Diploma in Banking and Finance, further enriching his expertise. His educational foundation is complemented by certifications, including a Certified Internal Auditor (CIA) and specialized courses in Retail Banking Management.
+
+His career trajectory includes pivotal roles as Branch Manager at State Bank of India and Assistant Manager at HDFC Bank, where he drove initiatives to improve branch performance and customer engagement. Sandeep's technical skills include advanced proficiency in Retail Banking, Audit and Compliance, and Branch Management, supported by tools such as MS Excel and CRM Software.
+
+Sandeep is recognized for his contributions to the banking sector, receiving accolades such as the Best Branch Manager Award from the Indian Banking Association and Excellence in Retail Banking Management from Canara Bank. Proficient in English and Hindi, he showcases strong interpersonal skills, especially in leadership and customer relationship management. He seeks to transition into a Chief Manager role within the banking industry, leveraging his strategic insights and innovative solutions to drive transformative growth.</span>
+                <br>
+                <span id="btn-summary-2" class="read-more" onclick="toggleSummary('summary-2')">Read More</span>
+            </td>
+            <td>13 years 8 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/sandeep-kumar/666/1185?id=b0bdd21a-330f-4454-8b3b-2735299f9adf" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>4</td>  <!-- SL. No. -->
+            <td>1193</td>
+            <td>Amit Kejriwal </td>
+            <td>
+                <span id="summary-3" class="summary">Amit Kejriwal is a results-driven Cloud Engineer with over 5 years of experience specializing in cloud solutions and DevOps practices. He holds a Bachelor of Technology in Computer Science and Engineering from the Indian Institute of Technology, Delhi, where he excelled in core subjects and participated in significant tech projects, including cloud-based applications. Amit's professional journey includes pivotal roles at Sonata Softwares and Tech Mahindra, where he has designed scalable cloud architectures, achieving a 30% reduction in operating costs, and implemented DevOps methodologies to enhance team collaboration and operational efficiency.
+
+His technical proficiency includes advanced skills in AWS, Azure, and CI/CD implementation, along with expertise in containerization (Docker, Kubernetes) and Infrastructure as Code (Terraform). Amit is a Certified Kubernetes Administrator and a Microsoft Azure Solutions Architect Expert, reflecting his commitment to continuous learning and professional development. He has published a research article on the impact of cloud infrastructure on product management, further demonstrating his thought leadership in the field.
+
+Recognized for his contributions, Amit received the Excellence in Cloud Innovation award and was named Best Employee of the Year at Sonata Softwares. He is fluent in both English and Hindi and possesses strong interpersonal skills, including leadership and problem-solving abilities. Passionate about environmental conservation and education for the underprivileged, Amit seeks opportunities in dynamic environments where he can leverage his cloud engineering expertise and product management insights to drive innovation and growth. He is currently based in Ajmer, India, and is open to new challenges in the tech industry.</span>
+                <br>
+                <span id="btn-summary-3" class="read-more" onclick="toggleSummary('summary-3')">Read More</span>
+            </td>
+            <td>5 years 7 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/amit-kejriwal/677/1193?id=f0a702ba-cc8a-4ab8-82fe-66a62744e639" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>5</td>  <!-- SL. No. -->
+            <td>1195</td>
+            <td>Vivek Gupta </td>
+            <td>
+                <span id="summary-4" class="summary">Vivek Gupta is an innovative Full Stack Developer with over 4 years of experience specializing in optimizing application performance and enhancing user experience. He holds a Bachelor of Technology in Computer Science and Engineering from the prestigious Indian Institute of Technology, Delhi, where he engaged in projects on software development and data structures, and completed coursework in Artificial Intelligence, Data Structures and Algorithms, and Web Development.
+
+Vivek's professional journey began at Infosys as a Software Engineer, where he developed and maintained software applications, collaborated with clients to gather requirements, and ensured high-quality code through rigorous testing. He currently excels as a Full Stack Developer at Microsoft, where he leverages both front-end and back-end technologies, implements machine learning models, and leads code reviews while mentoring junior developers. His technical proficiency includes advanced skills in JavaScript, React, Node.js, and Python, complemented by experience with tools such as Git, Docker, and JIRA.
+
+Recognized as a Microsoft Star Performer for his outstanding contributions, Vivek also received the Best Innovation Project award for integrating machine learning with web development technologies. He has published research on user experience optimization in full stack development, showcasing his ability to drive innovation through data-driven insights.
+
+Fluent in English and Hindi, Vivek possesses excellent communication, problem-solving, and collaboration skills. He is passionate about leveraging his expertise in machine learning to deliver cutting-edge solutions in product management. Currently based in Jaipur, he is open to opportunities that allow him to further his career in technology-driven environments.</span>
+                <br>
+                <span id="btn-summary-4" class="read-more" onclick="toggleSummary('summary-4')">Read More</span>
+            </td>
+            <td>4 years 1 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/vivek-gupta/681/1195?id=dc65aaa4-bfc5-4de8-bba4-3bd6059c3dd7" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>6</td>  <!-- SL. No. -->
+            <td>1209</td>
+            <td>Shalini Sharma </td>
+            <td>
+                <span id="summary-5" class="summary">Shalini Sharma is a Full Stack Developer with nearly 2 years of experience specializing in the design and development of responsive, user-friendly web applications. She holds a Bachelor's degree in Information Technology from Narula Institute of Technology and has honed her skills through various coursework, including advanced computer science and web development. Currently, Shalini is employed at Happy People AI, where she is responsible for creating robust front-end and back-end components, ensuring seamless user experiences and scalable architectures.
+
+Her previous roles include HTML Developer at Bayshore Intelligence Solutions, where she contributed to multiple web projects, and Web Developer at Quadrant Labs, where she led frontend development efforts and mentored junior developers. Shalini's technical expertise encompasses JavaScript, React, Node.js, SQL, and HTML/CSS, all rated at a proficiency level of 4. Additionally, she is experienced with tools such as Git, JIRA, and Postman, and has pursued continuous learning, recently completing a Full Stack Web Development course.
+
+Shalini's achievements include recognition as a "Performer in the Making" at Bayshore Intelligence Solutions and certifications in Cloud Computing and SQL from reputable platforms. She is fluent in English and Hindi, showcasing strong communication skills alongside her technical abilities.
+
+Seeking a full-time position as a Full Stack Developer, Shalini is open to hybrid, onsite, or remote work opportunities. She is particularly interested in roles within MSMEs or large corporates, with a notice period of 30 days and a willingness to travel up to 50%. With a passion for innovation and problem-solving, she is committed to delivering high-quality web solutions that align with business objectives.</span>
+                <br>
+                <span id="btn-summary-5" class="read-more" onclick="toggleSummary('summary-5')">Read More</span>
+            </td>
+            <td>2 years 0 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/shalini-sharma/701/1209?id=d9aec22d-5969-463d-8d31-0e831aca52d9" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>7</td>  <!-- SL. No. -->
+            <td>1210</td>
+            <td>Mainak Chaudhuri </td>
+            <td>
+                <span id="summary-6" class="summary">Mainak Chaudhuri is a driven Software Engineer with over 1 year of experience at Happy People AI, specializing in developing scalable software solutions that enhance user experience and optimize performance across the automotive and aerospace sectors. He holds a Bachelor of Technology in Computer Science and Engineering from the Indian Institute of Technology Kharagpur, where he engaged in projects focused on machine learning applications and participated actively in coding clubs and hackathons.
+
+Mainak's professional journey includes a pivotal role as a Software Engineering Intern at Tech Innovators Inc., where he gained hands-on experience in software development and data analysis, contributing to various client projects. His technical expertise encompasses machine learning, data analysis, software development, and performance optimization, all rated at a high proficiency level. He is proficient in tools such as TensorFlow, Pandas, Git, and Jupyter Notebook, which he utilizes to drive data-driven insights and develop robust software systems.
+
+His notable achievements include recognition for designing innovative software solutions at Happy People AI, along with a prestigious award for Excellence in Data-Driven Engineering from the Kolkata Institute of Technology. Mainak has also contributed to significant publications in renowned journals, focusing on performance optimization through machine learning in automotive applications and enhancing data analytics in the aerospace sector.
+
+Fluent in both English and Bengali, he possesses strong interpersonal skills, including team collaboration, problem-solving, and critical thinking. Mainak is passionate about leveraging technology to deliver impactful results while fostering a data-centric culture. He seeks opportunities in software engineering roles that enable him to apply his skills in innovative environments, particularly within the automotive and aerospace industries.</span>
+                <br>
+                <span id="btn-summary-6" class="read-more" onclick="toggleSummary('summary-6')">Read More</span>
+            </td>
+            <td>1 years 8 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/mainak-chaudhuri/702/1210?id=f055ff95-d612-4c0a-8ab0-475c54c680b0" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>8</td>  <!-- SL. No. -->
+            <td>1211</td>
+            <td>Venkata Ramani krishna </td>
+            <td>
+                <span id="summary-7" class="summary">Venkata Ramani Krishna is a dynamic UI/UX Designer with seven months of hands-on experience, specializing in crafting engaging and user-centric digital experiences. He recently completed a Bachelor's degree in Electronics and Communication Engineering from QIS College of Engineering and Technology, where he honed his skills in circuit design, embedded systems, and communication networks. His educational background is complemented by a Higher Secondary Certificate from Sri Chaitanya Junior College, focusing on Mathematics, Physics, and Chemistry, and leading a project on renewable energy.
+
+Currently, Venkata is a Design Intern at Happy People AI, where he applies Material Design principles to enhance user interfaces and improve user experience through interactive prototypes and usability testing. Previously, he served as a UI/UX Designer at Zenith Yuga, collaborating with cross-functional teams to create wireframes and high-fidelity designs while ensuring accessibility and intuitive navigation across platforms.
+
+Proficient in design tools such as Figma, Adobe XD, and Sketch, Venkata also possesses strong skills in wireframing, prototyping, and user research. He holds certifications in UI/UX design, validating his expertise in user experience principles. Notably, he has participated in significant projects, including the development of the Festa Surpresa decor booking website and the Bus Booker application, showcasing his ability to blend design with practical applications.
+
+Fluent in Telugu and English, with strong communication and teamwork skills, Venkata is seeking full-time opportunities in UI/UX design or software engineering roles within large corporations or startups. He is open to remote, hybrid, or onsite work in locations such as Hyderabad, Vijayawada, or Bangalore, with an expected salary of ₹1,000,000 annually and immediate availability.</span>
+                <br>
+                <span id="btn-summary-7" class="read-more" onclick="toggleSummary('summary-7')">Read More</span>
+            </td>
+            <td>0 years 7 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/venkata-ramani-krishna/703/1211?id=e6ff3538-48e9-423d-b709-235b0c1294ef" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>9</td>  <!-- SL. No. -->
+            <td>1213</td>
+            <td>Sai Indupuri </td>
+            <td>
+                <span id="summary-8" class="summary">Sai Indupuri is a dynamic AI Engineer with 5 months of hands-on experience in machine learning and data analytics, currently working at Happy People AI. He specializes in API development for Large Language Models (LLMs) and has a proven track record of enhancing API efficiency, resulting in a 25% increase in usage. He holds a Bachelor of Technology in Computer Science from Sanskrithi School of Engineering, where he focused on core subjects such as Data Structures, Algorithms, and Databases, and actively participated in projects like Smart Agro Nexus and Jarvis, showcasing his technical acumen and teamwork skills.
+
+In addition to his academic background, Sai has completed significant internships, including a Machine Learning role at HRH Next Services Limited, where he improved model efficiency by 20% through data analysis and implemented CI/CD pipelines. He is proficient in Python, AWS, and Natural Language Processing, and possesses strong skills in API Development, Machine Learning, and team collaboration. His technical toolkit includes tools like Flask, Git, and TensorFlow.
+
+Sai has also earned certifications such as the PCAP-Certified Associate in Python Programming and completed courses in Neural Networks and Deep Learning. He has contributed to the publication "Advancements in AI-Powered Agricultural Solutions" and received recognition for his innovative projects, including first place in a Mini-Project Expo.
+
+Fluent in English and Telugu, he is recognized for his strong problem-solving abilities and adaptability. Sai is seeking full-time or contractual opportunities as a Machine Learning Engineer or Data Scientist in the Information Technology sector, preferably in Hyderabad, Bangalore, or Chennai, with an expected salary of INR 1,200,000 annually. He is open to hybrid, remote, or onsite work arrangements and is willing to relocate.</span>
+                <br>
+                <span id="btn-summary-8" class="read-more" onclick="toggleSummary('summary-8')">Read More</span>
+            </td>
+            <td>0 years 5 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/sai-indupuri/704/1213?id=43ba49c9-badb-4ef4-91a5-bd85fa71ba75" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>10</td>  <!-- SL. No. -->
+            <td>1219</td>
+            <td>Pushpa Raj  </td>
+            <td>
+                <span id="summary-9" class="summary">Pushpa Raj is a seasoned Syndicate Manager with over 6 years of experience in logistics and supply chain management, specializing in syndicate operations and strategic partnerships. He holds a Bachelor of Business Administration in Logistics and Supply Chain Management from Andhra University, complemented by a Higher Secondary Certificate in Commerce from Sri Chaitanya Junior College. Throughout his career, he has demonstrated a robust ability to manage partner relationships, optimize performance metrics, and develop strategic initiatives that enhance operational efficiency and drive growth.
+
+Currently serving as a Syndicate Manager - Partner at Konda Reddy Gang, Pushpa oversees partner relations and syndicate operations, ensuring compliance and effective collaboration among stakeholders. His previous role as a Logistics Coordinator involved executing complex logistics operations under challenging conditions, showcasing his adaptability and innovative problem-solving skills. He has been recognized with the Logistics Optimization Award for implementing strategies that improved operational efficiency by 30%.
+
+Pushpa possesses strong technical skills in logistics optimization, strategic planning, and supply chain management, with proficiency in tools such as Microsoft Excel and SAP. He is also certified as a Supply Chain Professional and has participated in several industry conferences, further enhancing his expertise. His publication in "Logistics Today" reflects his thought leadership in the field.
+
+Fluent in Telugu and conversational in English, Pushpa is known for his exceptional interpersonal skills, including team leadership and negotiation. He is open to contract-based roles within large corporates in the logistics, business services, or political sectors, with a willingness to travel and relocate.</span>
+                <br>
+                <span id="btn-summary-9" class="read-more" onclick="toggleSummary('summary-9')">Read More</span>
+            </td>
+            <td>6 years 2 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/pushpa-raj-/678/1219?id=0ed97adc-a111-4fbb-8ad3-d2c479bfb7ef" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>11</td>  <!-- SL. No. -->
+            <td>1222</td>
+            <td>VANDANA ATUL SHENVI </td>
+            <td>
+                <span id="summary-10" class="summary">Vandana Atul Shenvi is an accomplished banking professional with 40 years of experience in financial management and client relations, specializing in enhancing operational efficiency and customer satisfaction within the financial services sector. Holding a Bachelor of Commerce from the University of Mumbai, she has a strong foundation in accounting, finance, and economics, complemented by her engagement in financial literacy initiatives and leadership roles in student organizations.
+
+Currently serving as an Assistant Manager at Punjab National Bank, Vandana has successfully led initiatives that resulted in a 20% increase in operational efficiency and a 15% rise in customer satisfaction scores. Previously, as a Branch Manager at State Bank of India, she drove a 25% increase in new account openings through innovative customer engagement strategies. Her role as a Senior Banking Officer at Bank of Baroda further solidified her expertise in managing high-net-worth client portfolios and delivering personalized financial solutions.
+
+Vandana possesses advanced skills in financial analysis, risk management, regulatory compliance, and investment strategies, with a proficiency in tools such as MS Excel and financial modeling software. She is a Certified Financial Consultant and has participated in prestigious conferences to stay abreast of industry trends. Her publication on enhancing financial literacy reflects her commitment to knowledge sharing and community engagement.
+
+Fluent in both English and Hindi, Vandana is recognized for her strategic thinking, effective communication, and team leadership abilities. She is passionate about environmental conservation and animal welfare. Currently based in Mumbai, she is open to new opportunities in financial consulting and is eager to leverage her extensive experience to drive impactful growth in a dynamic organization.</span>
+                <br>
+                <span id="btn-summary-10" class="read-more" onclick="toggleSummary('summary-10')">Read More</span>
+            </td>
+            <td>40 years 0 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/vandana-atul-shenvi/748/1222?id=43fdc68d-9fec-4770-a4b1-6932e293ef33" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>12</td>  <!-- SL. No. -->
+            <td>1224</td>
+            <td>Pranjal Joshi </td>
+            <td>
+                <span id="summary-11" class="summary">Pranjal Joshi is an accomplished Counselor with four years of experience, currently serving at Yin Yang Healing in Jaipur, India. He holds a Master’s Degree in Counseling Psychology from Indira Gandhi National Open University (IGNOU), complemented by a Bachelor’s Degree in Psychology from the University of Rajasthan. His educational background includes extensive coursework in cognitive behavioral therapy, advanced psychopathology, and statistical methods in psychology, providing a robust foundation in therapeutic techniques and psychological assessment.
+
+In his role as a Counselor, Pranjal has successfully implemented programs that enhance client well-being and engagement. He conducts personalized counseling sessions, develops therapeutic strategies, and collaborates with multidisciplinary teams to provide comprehensive care. His internship as an Intern Counselor at Mind Matters Clinic equipped him with hands-on experience in client interaction and treatment planning. Pranjal's core skills include client assessment, empathetic communication, crisis intervention, and program development, with a strong proficiency in counseling techniques and cognitive behavioral therapy.
+
+Pranjal has received notable recognition, including the Counseling Excellence Award from the Indian Association for Clinical Psychologists for his exceptional contributions to mental health improvement. His research article, "Enhancing Client Well-Being through Cognitive Behavioral Approaches," was published in the International Journal of Counseling Psychology, underscoring his commitment to advancing the field.
+
+Fluent in both English and Hindi, Pranjal excels in active listening and problem-solving, making him a valuable asset in any counseling environment. He is open to opportunities in the mental health sector, particularly in locations that prioritize holistic well-being practices, and is eager to contribute to initiatives that foster client support and resilience.</span>
+                <br>
+                <span id="btn-summary-11" class="read-more" onclick="toggleSummary('summary-11')">Read More</span>
+            </td>
+            <td>4 years 0 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/pranjal-joshi/750/1224?id=e5b3929e-b936-4e94-8e40-f5fc751e5248" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>13</td>  <!-- SL. No. -->
+            <td>1227</td>
+            <td>Swapna Shenvi </td>
+            <td>
+                <span id="summary-12" class="summary">Swapna Shenvi is a dynamic HR professional with over four years of experience specializing in employee experience and comprehensive recruitment strategies across both technical and non-technical domains. She holds a Master of Business Administration in Human Resource Management from The Vedica Scholars Programme for Women and a Bachelor of Commerce in Business Administration from Mithibai Motiram Kundnani College of Commerce & Economics. Her academic journey included significant coursework in Organizational Leadership and Strategic HR Analytics, complemented by a capstone project focused on innovative HR practices to enhance employee retention.
+
+Swapna's professional experience includes her current role as an HR Manager at Happy People AI, where she effectively manages recruitment processes and collaborates with departmental leaders to align hiring strategies with organizational goals. Previously, she served as a Skilling Analyst at Disprz, analyzing HR data to improve employee satisfaction and operational efficiency, and gained foundational HR experience as an intern at ASK Group. Earlier in her career, she worked in various capacities, including Call-Quality Analyst and Agency Development Manager, where she honed her skills in performance management and employee development.
+
+Her technical skills encompass talent acquisition, employee engagement, and HR analytics, with proficiency in tools such as Applicant Tracking Systems and HRIS software. She is also certified in advanced yoga education, reflecting her commitment to personal growth and well-being. Fluent in English, Hindi, and Marathi, Swapna possesses strong interpersonal skills, including communication, team leadership, and adaptability.
+
+Swapna is seeking opportunities in HR roles within organizations focused on employee development and engagement, ideally located in Hyderabad. She is available for immediate employment and is open to discussions regarding salary expectations.</span>
+                <br>
+                <span id="btn-summary-12" class="read-more" onclick="toggleSummary('summary-12')">Read More</span>
+            </td>
+            <td>4 years 2 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/swapna-shenvi/474/1227?id=5192ac93-9e5f-416d-91be-6edacb9c4a6e" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>14</td>  <!-- SL. No. -->
+            <td>1229</td>
+            <td>upendra v kini </td>
+            <td>
+                <span id="summary-13" class="summary">Upendra V Kini is a seasoned banking professional with 38 years of expertise in credit monitoring and recovery, currently serving as the General Manager at NKGSB Co-operative Bank Ltd. He holds a Master of Business Administration in Finance from Jamnalal Bajaj Institute of Management Studies and a Bachelor of Commerce in Accountancy from the University of Mumbai. Upendra has developed a strong foundation in financial management, investment analysis, and credit risk assessment through his academic endeavors and practical experience.
+
+Over his extensive career, he has excelled in various roles, including Head of Credit for Business and Retail Banking and Assistant Manager at Indian Bank. His key responsibilities have included overseeing credit portfolios, enhancing recovery processes, and ensuring compliance with regulatory standards. Notably, he has led initiatives that significantly improved asset quality and minimized non-performing assets across banking segments.
+
+Upendra possesses advanced skills in credit risk analysis, financial modeling, and operational risk management, alongside proficiency in tools such as Excel, SAS, and Tableau. He has earned certifications in Advanced Credit Risk Management and is recognized for his leadership excellence in credit recovery by the Indian Banking Association.
+
+His contributions to the field are further evidenced by his publication in the Journal of Banking and Finance and accolades such as the Best Practices in Risk Management award from the Reserve Bank of India. Fluent in English and Hindi, Upendra combines strong interpersonal skills with a commitment to continuous improvement and strategic innovation. He is open to opportunities in senior management roles within the banking industry, preferably located in Mumbai, and is keen on driving impactful credit and risk management strategies.</span>
+                <br>
+                <span id="btn-summary-13" class="read-more" onclick="toggleSummary('summary-13')">Read More</span>
+            </td>
+            <td>38 years 0 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/upendra-v-kini/756/1229?id=cf285f6a-5f59-4e68-b3af-849d47df09e5" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>15</td>  <!-- SL. No. -->
+            <td>1230</td>
+            <td>Shubhra Sasmit </td>
+            <td>
+                <span id="summary-14" class="summary">Shubhra Sasmit is a dynamic Debt Finance Professional with over 8 years of experience, currently excelling at Deloitte GmbH. With a solid educational foundation, Shubhra holds a Master of Business Administration in Finance from Goethe University Frankfurt and a Bachelor of Commerce in Accounting and Finance from the University of Mumbai. Her academic pursuits included advanced financial modeling and investment strategies, complemented by a dissertation on risk assessment in emerging markets.
+
+In her role at Deloitte, Shubhra has developed comprehensive financial models, conducted risk assessments, and provided strategic advisory services, significantly contributing to successful funding solutions and capital structure optimization in the investment banking sector, particularly in mergers and acquisitions. Previously, as a Financial Analyst at PwC and a Junior Financial Analyst at KPMG, she honed her skills in financial analysis, market research, and strategic financial planning.
+
+Shubhra is proficient in advanced tools such as Excel and PowerPoint, and holds certifications including the Chartered Financial Analyst (CFA) Level II and a course in Advanced Financial Modeling from the CFA Institute. She has published research on strategic capital structuring in M&A transactions and received accolades for her exemplary contributions in financial modeling.
+
+Fluent in English and German, Shubhra possesses exceptional communication and interpersonal skills, enabling her to effectively collaborate and negotiate with clients. She is passionate about optimizing capital structures and delivering insightful financial solutions, eager to leverage her expertise in investment banking. Shubhra is open to opportunities that challenge her skills in finance and strategic advisory while fostering growth in a dynamic work environment.</span>
+                <br>
+                <span id="btn-summary-14" class="read-more" onclick="toggleSummary('summary-14')">Read More</span>
+            </td>
+            <td>8 years 0 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/shubhra-sasmit/758/1230?id=47b2ebfb-ad3a-4b39-9b32-741bd35cafeb" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>16</td>  <!-- SL. No. -->
+            <td>1231</td>
+            <td>Prateek Kanchan </td>
+            <td>
+                <span id="summary-15" class="summary">Prateek Kanchan is a seasoned Business Analyst with over 12 years of experience specializing in product management and business analysis within the BFSI and IT consulting sectors. He holds an MBA in Product Management from the Indian Institute of Management, Bangalore, where he focused on business strategy, marketing, and completed a capstone project on market entry strategy for a tech startup. Prateek also earned a Bachelor of Technology in Information Technology from the Indian Institute of Technology, Delhi, emphasizing software development and project management.
+
+Currently serving as a Specialist Business Analyst at NICE ACTIMIZE, Prateek has successfully led cross-functional teams to enhance product development processes, achieving a 20% increase in efficiency. Previously, he held roles as a Senior Business Analyst at Infosys and as a Business Analyst at Tata Consultancy Services, where he significantly improved project delivery timelines and client satisfaction through effective stakeholder management and data-driven decision-making.
+
+His technical skills include Business Analysis, Data Analysis, and Agile Methodologies, complemented by proficiency in tools such as JIRA, Tableau, and Microsoft Excel. Prateek is also certified as a Scrum Product Owner and has published research on data-driven decision-making in product development. His contributions have been recognized with awards like the Best Business Analyst Award from the International Institute of Business Analysis (IIBA) and the Excellence in Product Development from NICE ACTIMIZE.
+
+Fluent in English and Hindi, Prateek excels in communication, problem-solving, and team leadership. He is seeking opportunities in product management and business analysis within dynamic organizations, preferably located in Pune, India, and is open to competitive salary discussions.</span>
+                <br>
+                <span id="btn-summary-15" class="read-more" onclick="toggleSummary('summary-15')">Read More</span>
+            </td>
+            <td>12 years 6 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/prateek-kanchan/759/1231?id=24dd6ed4-021c-4983-ad53-bde87cde0206" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>17</td>  <!-- SL. No. -->
+            <td>1232</td>
+            <td>Gaurav Srivastava </td>
+            <td>
+                <span id="summary-16" class="summary">Gaurav Srivastava is a dynamic entrepreneur and seasoned marketing professional with over 12 years of experience in product management and innovative advertising. As the Founder of COVANA MEDIA PVT LTD, he has successfully driven strategic vision and execution, leading impactful advertising campaigns that have significantly enhanced client engagement by over 50%. His expertise encompasses strategic marketing initiatives, digital advertising, and campaign analysis, making him a notable figure in the advertising landscape.
+
+Gaurav holds a Master of Business Administration in Marketing from the prestigious Indian Institute of Management, Ahmedabad, where he focused on marketing strategies and digital consumer engagement. He also earned a Bachelor of Commerce in Business Administration from St. Xaviers College, Mumbai. His educational background is complemented by certifications such as Certified Digital Marketing Professional and training in Digital Marketing Strategy.
+
+His professional journey includes key roles as a Senior Marketing Strategist at AdCraft Solutions and a Marketing Executive at MediaMinds Agency, where he developed strategies that boosted brand visibility by 30% and contributed to a 25% increase in client acquisition. Gaurav is proficient in tools like Google Analytics and HubSpot and possesses advanced skills in product management, strategic marketing, and data analytics.
+
+Notably, he authored a research article on Innovative Advertising Strategies and received the Excellence in Marketing award from the Mumbai Advertising Association for his contributions to the field. Fluent in English and Hindi, Gaurav is not only a leader and communicator but also a problem-solver known for fostering team collaboration.
+
+Gaurav is currently based in Mumbai and is open to opportunities in innovative marketing and advertising sectors, seeking roles that challenge his strategic mindset and creative approach while offering competitive compensation.</span>
+                <br>
+                <span id="btn-summary-16" class="read-more" onclick="toggleSummary('summary-16')">Read More</span>
+            </td>
+            <td>12 years 0 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/gaurav-srivastava/760/1232?id=249286e0-1e9b-40ab-b477-672d4cc75721" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>18</td>  <!-- SL. No. -->
+            <td>1234</td>
+            <td>Abhiranjan kumar </td>
+            <td>
+                <span id="summary-17" class="summary">Abhiranjan Kumar is a results-driven Senior Manager with over 13 years of experience in the oil and gas sector, specializing in project management and strategic leadership. He holds a Master of Business Administration in Business Management from the Indian Institute of Management, Ahmedabad, where he focused on strategic management and operations, and a Bachelor of Technology in Chemical Engineering from the Indian Institute of Technology, Delhi. His professional journey includes significant roles such as Senior Manager at Indian Oil Corporation Limited, where he led cross-functional teams on multimillion-dollar projects, enhancing operational efficiencies by 20% and contributing to substantial revenue growth.
+
+Abhiranjan's expertise encompasses advanced project management, budget management, and strategic planning, supported by his certifications in Project Management Professional (PMP) and Lean Six Sigma Green Belt. He is proficient in tools such as Microsoft Project and Oracle Primavera, demonstrating advanced skills in project execution and monitoring. His leadership abilities are complemented by strong communication, team collaboration, and problem-solving skills.
+
+He has authored publications on innovative project management strategies and has received accolades like the Project Excellence Award for exemplary leadership in infrastructure projects. Abhiranjan actively participates in environmental conservation and youth education initiatives, reflecting his commitment to social causes.
+
+Currently based in Barauni, India, he seeks opportunities in the oil and gas industry that allow him to leverage his extensive experience and leadership skills. With a focus on enhancing operational efficiencies and driving revenue growth, he is open to roles that challenge his capabilities and foster professional growth.</span>
+                <br>
+                <span id="btn-summary-17" class="read-more" onclick="toggleSummary('summary-17')">Read More</span>
+            </td>
+            <td>13 years 0 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/abhiranjan-kumar/762/1234?id=081fac9b-3048-486d-a4d3-ee369d2c254e" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>19</td>  <!-- SL. No. -->
+            <td>1235</td>
+            <td>Tushaar </td>
+            <td>
+                <span id="summary-18" class="summary">Tushaar is a seasoned Systems Architect with over 14 years of experience in leading innovative projects within the locomotive, rolling stock, and wind turbine sectors. He holds a Master of Technology in Systems Engineering from the Indian Institute of Science, Bangalore, and a Bachelor of Technology in Electrical and Electronics Engineering from the National Institute of Technology, Tiruchirappalli. Tushaar's academic background includes a strong focus on advanced systems engineering principles, project management, and modular controls architecture.
+
+In his current role at Wabtec Corporation, Tushaar drives the Modular Controls Architecture initiative, successfully reducing project completion times by 20% while enhancing operational efficiency and client satisfaction. His previous experience as a Senior Systems Engineer at General Electric involved leading engineering projects that improved energy efficiency and reliability, while at Siemens, he contributed to the design and development of control systems for industrial applications.
+
+Tushaar possesses advanced technical skills in Systems Engineering, Project Management, and Modular Controls Architecture, complemented by proficiency in tools such as MATLAB, MS Project, and JIRA. He is a Certified Systems Engineering Professional (CSEP) and has published several research papers on modular control systems and project management optimization.
+
+Recognized for his leadership abilities, Tushaar has received accolades for his contributions to cross-functional team dynamics and operational improvements. He is fluent in English and Hindi and is passionate about environmental conservation and youth education. Tushaar is seeking opportunities in systems engineering and consulting within innovative industries, preferably in Bangalore, with a focus on driving operational excellence and collaborative project management.</span>
+                <br>
+                <span id="btn-summary-18" class="read-more" onclick="toggleSummary('summary-18')">Read More</span>
+            </td>
+            <td>14 years 6 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/tushaar/765/1235?id=cd261c79-15d7-459b-b89e-e56a4dff79f0" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>20</td>  <!-- SL. No. -->
+            <td>1240</td>
+            <td>Mayank Gupta </td>
+            <td>
+                <span id="summary-19" class="summary">Mayank Gupta is an accomplished Data Scientist with over 8 years of experience in leveraging analytics to drive product innovation and strategic decision-making. He holds a Master of Science in Data Science and Analytics from the Indian Institute of Technology, Delhi, where he focused on advanced data analysis techniques, machine learning algorithms, and statistical modeling. His professional journey includes significant roles at Medtronic and Infosys, where he developed and implemented predictive models, optimized inventory management, and enhanced data-driven insights that resulted in a 15% increase in operational efficiency.
+
+In his current role at Medtronic, Mayank collaborates with cross-functional teams to inform key business strategies and improve performance through real-time data visualizations. Previously, as a Senior Data Analyst at Infosys, he led a team in delivering tailored data solutions that drove measurable results for clients. His technical proficiency includes advanced skills in Python, SQL, and Tableau, complemented by strong interpersonal abilities such as communication and critical thinking.
+
+Mayank has earned notable certifications, including Certified Data Scientist from the Data Science Council of America, and has published articles in reputable journals focusing on big data analytics and client outcomes in healthcare. His contributions have been recognized with the Excellence in Analytics Award, underscoring his ability to translate complex datasets into actionable insights.
+
+Fluent in English and Hindi, Mayank is passionate about environmental conservation and animal welfare. He is currently seeking opportunities in pricing strategy and product management roles within innovative organizations, preferably in Gurgaon, where he can apply his expertise to enhance business intelligence and client outcomes.</span>
+                <br>
+                <span id="btn-summary-19" class="read-more" onclick="toggleSummary('summary-19')">Read More</span>
+            </td>
+            <td>8 years 7 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/mayank-gupta/776/1240?id=13e1d0b1-edf9-4911-bfcc-6c99d0129a0c" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>21</td>  <!-- SL. No. -->
+            <td>1241</td>
+            <td>kamuni manikanta </td>
+            <td>
+                <span id="summary-20" class="summary">Kamuni Manikanta is a dynamic B2B Product Designer with over 9 years of experience in user experience design, specializing in creating innovative, user-centric solutions that align with business objectives. He holds a Bachelor of Design in Product Design from the National Institute of Design, where he honed his skills in design principles, user interface, and user experience through extensive coursework and hands-on projects. His professional journey includes significant roles at Cisco as a Product Designer, where he enhances user experiences and drives product innovation, and at Innovatech and Tech Solutions as a UI/UX Designer, leading projects that significantly improved user engagement and satisfaction.
+
+His technical expertise includes product research, wireframing, prototyping, and user testing, complemented by proficiency in tools such as Figma, Adobe XD, and Sketch. Manikanta holds certifications in User Experience Design Fundamentals and as a Certified Usability Analyst (CUA), showcasing his commitment to usability and user-centered design principles. He has contributed to academic literature with a publication in the International Journal of Product Management, focusing on strategies to enhance user engagement.
+
+Recognized for his leadership and innovation, he received the Cisco Innovator Award for his contributions to product design and was awarded Best UI/UX Project by Tech Solutions for delivering a transformative design that increased user engagement by 40%. Fluent in English and Hindi, he possesses strong interpersonal skills, including communication, collaboration, and problem-solving. Manikanta is seeking opportunities in user experience design within innovative tech environments, preferably in Hyderabad, and is available for immediate employment.</span>
+                <br>
+                <span id="btn-summary-20" class="read-more" onclick="toggleSummary('summary-20')">Read More</span>
+            </td>
+            <td>9 years 2 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/kamuni-manikanta/778/1241?id=98173b61-ae1f-4a2e-8283-b1046e193dc2" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>22</td>  <!-- SL. No. -->
+            <td>1246</td>
+            <td>Abhinav Anand </td>
+            <td>
+                <span id="summary-21" class="summary">Abhinav Anand is a seasoned Product Manager with over 13 years of experience in the technology sector, specializing in driving product strategies that enhance user engagement and satisfaction. He holds a Bachelor of Technology in Computer Science and Engineering from the Indian Institute of Technology Delhi, where he developed a strong foundation in algorithms and software engineering. He furthered his education with a Master of Business Administration in Product Management from the Indian Institute of Management Bangalore, focusing on strategic marketing and innovation management.
+
+Currently employed at Microsoft, Abhinav has successfully led cross-functional teams to launch innovative solutions, achieving a 20% increase in user engagement. Previously, he served as a Senior Product Manager at Google and a Product Manager at Amazon, where he drove product innovation and market growth. His responsibilities included conducting market research, implementing data-driven decision-making processes, and mentoring junior product managers.
+
+Abhinav is proficient in Agile Methodologies, Market Research, and User Experience Design, complemented by expertise in tools such as Jira and Google Analytics. He is also a Certified Scrum Product Owner and has attended advanced product management courses at Stanford University. His contributions to the field have been recognized with awards like the Excellence in Product Management and he has published articles on innovative product strategies and user-centric design.
+
+Fluent in English and Hindi, Abhinav possesses strong leadership, communication, and collaboration skills. He is interested in opportunities that allow him to leverage his extensive experience in product management, ideally in a Chief Product Officer role within the tech industry, and is open to positions in Bengaluru or remote settings.</span>
+                <br>
+                <span id="btn-summary-21" class="read-more" onclick="toggleSummary('summary-21')">Read More</span>
+            </td>
+            <td>13 years 6 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/abhinav-anand/783/1246?id=edde40cb-e4f1-41ae-94b2-a9cff01dfbe2" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>23</td>  <!-- SL. No. -->
+            <td>1250</td>
+            <td>Naheeda Afreen </td>
+            <td>
+                <span id="summary-22" class="summary">Naheeda Afreen is a dynamic Full Stack Developer with 9 months of experience, specializing in innovative solutions and seamless user experiences. She holds a Bachelor of Technology in Computer Science and Information Technology from CVR College of Engineering, where she excelled in core subjects such as Data Structures, Algorithms, and Database Management. During her academic tenure, Naheeda led a project on a Student Attendance Monitoring System, earning the Best Project Award for its innovative approach to enhancing attendance management through a user-friendly mobile application.
+
+Naheeda has gained practical experience through internships at prominent organizations, including Vyza Solutions, where she contributed to the development of a community-focused Android application using Jetpack and Kotlin, and Happy People Ai, where she implemented responsive features using ReactJS and established a robust backend with Node.js. Her technical skill set includes proficiency in Java, HTML/CSS, JavaScript, SQL, and React, alongside foundational knowledge in Spring Boot and REST APIs.
+
+In addition to her technical capabilities, Naheeda has completed certifications, including Oracle Certified Associate, Java SE 8 Programmer, and advanced SQL programming. She is fluent in English, Hindi, and Urdu, which enhances her communication skills in diverse team environments.
+
+Naheeda is seeking full-time opportunities as a Software Engineer, Full Stack Developer, or Java Developer in the Information Technology or product management sectors, preferably in Hyderabad. She is available to start within a 30-day notice period and expects an annual salary of ₹500,000. Naheeda is open to hybrid, onsite, or remote work arrangements and is keen to contribute to start-ups or large corporates focused on application development.</span>
+                <br>
+                <span id="btn-summary-22" class="read-more" onclick="toggleSummary('summary-22')">Read More</span>
+            </td>
+            <td>0 years 9 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/naheeda-afreen/787/1250?id=44ba2277-d716-4fa4-ba45-8dad2c72dd67" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>24</td>  <!-- SL. No. -->
+            <td>1251</td>
+            <td>Sourabh Purwar </td>
+            <td>
+                <span id="summary-23" class="summary">Sourabh Purwar is a seasoned professional with over 10 years of experience specializing in UX design, product management, and strategic consulting. Currently serving as the Co-Founder and Director of Happy People AI, he is adept at driving business growth and product development by managing diverse teams across various functions. Sourabh holds an MBA in Marketing and Business Research from the Institute of Management Technology, Ghaziabad, and a Bachelor of Arts in Animation and Multimedia from the Birla Institute of Technology, Mesra, where he honed his skills in design thinking and digital storytelling.
+
+Throughout his career, he has held significant positions, including Senior Consultant at Deloitte, where he excelled in innovation and product strategy for Fortune 500 clients. His prior role as Senior UX Researcher at Oracle Netsuite saw him leading international teams in UX research and project management, significantly enhancing user experiences and product offerings. Sourabh's technical proficiency encompasses UX design, product management, and strategic planning, with expertise in tools such as Figma, RiseON Suite, and Adobe Creative Suite.
+
+He is a recognized leader in the UX community, having mentored at UX India and authored influential publications on user experience design. His accolades include winning the "Buildathon for Good" at Oracle Netsuite and being a second runner-up in the "Concepto.exe" competition. Fluent in English and Hindi, Sourabh is open to remote or hybrid work opportunities in startups or large corporates, with a flexible schedule and a willingness to travel extensively.</span>
+                <br>
+                <span id="btn-summary-23" class="read-more" onclick="toggleSummary('summary-23')">Read More</span>
+            </td>
+            <td>10 years 4 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/sourabh-purwar/785/1251?id=d26c307e-3853-49a8-9507-cfc38d1f7166" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>25</td>  <!-- SL. No. -->
+            <td>1239</td>
+            <td>Arunkumar K </td>
+            <td>
+                <span id="summary-24" class="summary">Arunkumar K is an aspiring AI Engineer with a strong foundation in Python, Natural Language Processing (NLP), and generative AI, complemented by over seven months of hands-on internship experience. He holds a Bachelor of Science in Computer Science from Bharathidasan University and is currently pursuing a Post Graduate Diploma in Data Science at the Central University of Tamil Nadu, with coursework in Machine Learning and Oracle SQL.
+
+During his internships at Telic Info Services Pvt Ltd. and Happy People AI, Arunkumar contributed to the development of AI-driven applications, focusing on machine learning models and enhancing user experiences through generative AI. He successfully designed and implemented a retrieval-augmented generation (RAG) based chatbot for Tamil language users, showcasing his innovative approach to AI solutions. His technical skills include advanced proficiency in Python and familiarity with tools like AWS Lambda and Langchain, which he utilizes to develop and optimize AI models.
+
+Arunkumar has received accolades including first place in a national-level quiz and third place in a technical symposium, reflecting his strong analytical and problem-solving capabilities. He actively engages in continuous learning, evidenced by his certifications in Machine Learning and SQL, and has published research on generative AI in natural language processing.
+
+Fluent in English and Tamil, he is recognized for his communication, teamwork, and fast-learning abilities. Arunkumar is seeking full-time opportunities as an AI Engineer or ML Engineer in Chennai, Coimbatore, or Bangalore, with an expected salary of ₹500,000 annually. He is open to hybrid, onsite, or remote work arrangements and is willing to relocate.</span>
+                <br>
+                <span id="btn-summary-24" class="read-more" onclick="toggleSummary('summary-24')">Read More</span>
+            </td>
+            <td>0 years 7 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/arunkumar-k/773/1239?id=d71cbb3c-557f-4955-9384-b38c8c394212" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>26</td>  <!-- SL. No. -->
+            <td>1263</td>
+            <td>Tulasi Subrahmanyam </td>
+            <td>
+                <span id="summary-25" class="summary">Tulasi Subrahmanyam is a dynamic and motivated MERN Stack Developer with one year of hands-on experience in both frontend and backend technologies. A graduate with a Bachelor of Science in Computer Science from Sri Sai Degree College, Tulasi has developed a strong foundation in programming principles through coursework in data structures, algorithms, and software engineering. His professional journey includes roles as a Full Stack Developer at Happy People AI, where he contributes to the Project Riseon by designing responsive front-end features and building robust back-end systems using ReactJS and Node.js. Previously, he interned at Vivid Wizards, developing a travel booking application, and worked as a Frontend Developer at Viscommerce, where he integrated 3D models into web applications.
+
+Tulasi possesses a diverse skill set, including proficiency in JavaScript, React, Node.js, and Python, along with experience in database management with MongoDB and SQLite. His technical toolkit also encompasses version control with Git, API integration, and UI/UX design using Figma. He has successfully completed certifications in Full Stack Web Development and JavaScript, further validating his expertise.
+
+His project portfolio showcases significant contributions to applications like the HotelBookingProject and the Ecommerce App, emphasizing his ability to create user-centric, secure, and scalable solutions. Tulasi is fluent in English and Telugu, and he excels in problem-solving, communication, and team collaboration.
+
+Tulasi is seeking full-time opportunities as a Software Engineer or Full Stack Developer, with a preferred location in Chennai, Hyderabad, or Bengaluru. He is open to onsite, remote, or hybrid work arrangements and is available to join immediately, with an expected salary of ₹550,000 annually.</span>
+                <br>
+                <span id="btn-summary-25" class="read-more" onclick="toggleSummary('summary-25')">Read More</span>
+            </td>
+            <td>1 years 0 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/tulasi-subrahmanyam/811/1263?id=675773f0-15c2-42d4-95f4-01bdebabc66d" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>27</td>  <!-- SL. No. -->
+            <td>1255</td>
+            <td>Mainak Chaudhuri </td>
+            <td>
+                <span id="summary-26" class="summary">Mainak Chaudhuri is a dynamic Software Engineer with two years of experience, specializing in machine learning and software development. He holds a Bachelor of Technology in Computer Science and Engineering from SRM Institute of Science and Technology, Chennai, where he excelled in advanced coursework including Data Science, Machine Learning, and Software Engineering. Currently, he serves as a Software Engineer at Happy People AI, where he develops and optimizes software solutions, focusing on machine learning and data analytics to drive innovation in the aerospace and automotive sectors. Previously, he worked as a Technical Analyst at Deloitte USI, enhancing Salesforce functionalities and improving operational efficiency.
+
+Mainak is proficient in technical skills such as Machine Learning, Data Analysis, and Python Programming, all rated at an advanced level. He is also familiar with tools like TensorFlow and Git, demonstrating his ability to integrate data science with software engineering practices. His certifications, including Microsoft Certified: Azure Data Scientist Associate, underscore his expertise in deploying machine learning models.
+
+Notable achievements include receiving the "Best Innovative Solution" award for developing a software tool that merges AI insights with DevOps workflows, and recognition for excellence in machine learning project applications. Additionally, he has published a conference paper on advanced data analytics methodologies in the aerospace sector.
+
+Fluent in English and Bengali, Mainak possesses strong interpersonal skills, including team collaboration and effective communication. He is seeking full-time or contractual opportunities in the Education, Product Management, or Automotive industries, with a preferred location in Kolkata, Hyderabad, or Pune. He is available to relocate and willing to travel as needed, with a monthly salary expectation of ₹100,000.</span>
+                <br>
+                <span id="btn-summary-26" class="read-more" onclick="toggleSummary('summary-26')">Read More</span>
+            </td>
+            <td>2 years 0 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/mainak-chaudhuri/801/1255?id=76ace88c-58cc-49bb-9a6f-4b3f5c65815e" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>28</td>  <!-- SL. No. -->
+            <td>1298</td>
+            <td>Shivek Soni </td>
+            <td>
+                <span id="summary-27" class="summary">Shivek Soni is a dynamic Full Stack Developer with over a year of experience in crafting innovative solutions that enhance user engagement. He holds a Bachelor of Technology in Computer Science and Engineering from the National Institute of Technology Hamirpur, where he developed a strong foundation in programming, data structures, and algorithms while actively participating in coding competitions and projects. His professional journey includes a current role at Happy People AI, where he designs and implements scalable web applications using JavaScript, React, and Node.js, achieving a 20% increase in application load speed through performance optimization. Previously, as a Software Developer Intern at TechWave Solutions, he contributed to software development projects that improved operational efficiency by 30%.
+
+Shivek's technical proficiency encompasses advanced skills in HTML/CSS, SQL, and various frameworks, underpinned by a solid understanding of cybersecurity principles, validated by certifications like Certified Ethical Hacker (CEH) and courses on cybersecurity fundamentals. His adeptness with tools such as Git, Jira, and Docker complements his programming capabilities.
+
+His publications in Tech Innovations Journal highlight his commitment to user-centric application design, while accolades like the Outstanding Developer Award from Happy People AI underscore his contributions to enhancing user experience. Fluent in both English and Hindi, he excels in problem-solving, critical thinking, and team collaboration.
+
+Eager to transition into a Cybersecurity Analyst role, particularly within the aerospace sector, Shivek is looking for opportunities that leverage his technical prowess and analytical skills. He is based in Hamirpur and is open to new challenges that align with his career aspirations.</span>
+                <br>
+                <span id="btn-summary-27" class="read-more" onclick="toggleSummary('summary-27')">Read More</span>
+            </td>
+            <td>1 years 2 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/shivek-soni/838/1298?id=958c162c-098d-468a-bc89-277ba90613e2" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>29</td>  <!-- SL. No. -->
+            <td>1301</td>
+            <td>Pooja Garg </td>
+            <td>
+                <span id="summary-28" class="summary">Pooja Garg is a dynamic Assistant Manager with over 11 years of experience in IT project management, currently leveraging her expertise at Deloitte. She has a proven track record of driving transformative solutions across notable organizations including Accenture and Infosys, where she successfully managed cross-functional teams to deliver high-impact projects, enhance operational efficiency, and elevate client satisfaction. Pooja holds a Bachelor of Technology in Computer Science and Engineering from the Indian Institute of Technology, Hyderabad, and a B.Tech in Information Technology from SRM University, specializing in advanced product management.
+
+Her professional journey includes key roles such as Project Manager at Accenture, where she oversaw project delivery and implemented best practices, and Senior Software Engineer at Infosys, focusing on software design and development. Pooja's technical skills encompass Project Management, Agile Methodologies, and Data Analysis, with advanced proficiency in tools like JIRA, MS Project, and Tableau. She is also a Certified Scrum Product Owner and has participated in various product management courses and conferences.
+
+Pooja's contributions to the field are evidenced by her publications on innovative strategies in IT project management and process improvements that enhance client satisfaction. She has received multiple accolades, including the Deloitte Excellence Award for leading a critical IT project and the Accenture Innovation Champion award for her innovative contributions.
+
+Fluent in English and Hindi, Pooja excels in leadership, communication, and problem-solving. She is interested in roles focused on product management within the IT sector, preferably in Hyderabad, and is open to new opportunities to further enhance client satisfaction and operational efficiencies.</span>
+                <br>
+                <span id="btn-summary-28" class="read-more" onclick="toggleSummary('summary-28')">Read More</span>
+            </td>
+            <td>11 years 0 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/pooja-garg/841/1301?id=7617c76e-7d45-4196-bd66-f6d9c8602b64" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>30</td>  <!-- SL. No. -->
+            <td>1314</td>
+            <td>Jyonit kapuriya </td>
+            <td>
+                <span id="summary-29" class="summary">Jyonit Kapuriya is a dynamic Full Stack Developer with over 2 years of experience specializing in crafting user-centric web applications. He has successfully contributed to projects at Octopus Technology and Tech Innovations, where he enhanced system efficacy and client engagement through agile methodologies and cutting-edge technologies. His expertise lies in both front-end and back-end development, allowing him to create seamless digital experiences that meet user needs.
+
+Jyonit holds a solid educational foundation that has equipped him with the technical skills necessary for his role, although specific details of his educational background are not provided. He is proficient in various programming languages and frameworks, which enable him to tackle complex development challenges effectively. His work experience includes key responsibilities such as collaborating with cross-functional teams to deliver high-quality software solutions and optimizing existing applications for better performance.
+
+In addition to his technical skills, Jyonit is known for his problem-solving abilities and effective communication, making him a valuable team member. He is passionate about continuous learning and staying updated with the latest industry trends, although specific certifications and training are not listed.
+
+Jyonit is based in Surat and is open to employment opportunities in the technology sector, ideally in roles that allow him to further develop his skills and contribute to innovative projects. He is flexible regarding location and is actively seeking positions that offer a collaborative work environment. With his blend of technical proficiency, practical experience, and commitment to excellence, Jyonit is well-positioned to make a significant impact in the field of web development.</span>
+                <br>
+                <span id="btn-summary-29" class="read-more" onclick="toggleSummary('summary-29')">Read More</span>
+            </td>
+            <td>2 years 5 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/jyonit-kapuriya/861/1314?id=a9c8954b-3488-44ac-836c-cca4317e1929" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>31</td>  <!-- SL. No. -->
+            <td>1319</td>
+            <td>Priyanka </td>
+            <td>
+                <span id="summary-30" class="summary">Priyanka is a seasoned Data Scientist with over 10 years of experience, currently employed at Microsoft, where she has significantly leveraged machine learning to enhance operational efficiency, achieving a remarkable 20% increase in project turnaround times. She holds a Master of Science in Data Science from Stanford University, specializing in machine learning, data mining, and statistical modeling, along with a Bachelor of Technology in Computer Science and Engineering from the Indian Institute of Technology, Bombay. 
+
+Her professional journey includes pivotal roles such as Data Analyst at Infosys and Business Intelligence Analyst at Tata Consultancy Services, where she honed her skills in data analysis, predictive analytics, and business intelligence solutions. Priyanka has a proven track record in developing advanced data visualization tools and implementing machine learning models that empower teams to make informed, data-driven decisions, particularly within the architecture sector.
+
+She is proficient in a variety of technical skills, including Python, R, SQL, and Tableau, and has advanced knowledge in statistical analysis and data mining. Priyanka's commitment to continuous improvement is highlighted by her certifications, including a Certified Data Scientist credential from DASCA and completion of an Advanced Machine Learning course on Coursera. 
+
+Her accolades include the Machine Learning Excellence Award from Microsoft and being a winner of the Data Visualization Challenge, demonstrating her innovative approach to data-driven solutions. Fluent in English and Hindi, Priyanka excels in team collaboration, communication, and problem-solving. She is keen on opportunities that allow her to apply her expertise in data science within dynamic environments, ideally in technology or consulting industries, and is open to positions that offer a collaborative atmosphere and the potential for professional growth.</span>
+                <br>
+                <span id="btn-summary-30" class="read-more" onclick="toggleSummary('summary-30')">Read More</span>
+            </td>
+            <td>10 years 6 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/priyanka/864/1319?id=b51b88fe-2c5e-4ea6-a7d5-ce854af4b818" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>32</td>  <!-- SL. No. -->
+            <td>1177</td>
+            <td>Sandeep Kumar </td>
+            <td>
+                <span id="summary-31" class="summary">Sandeep Kumar is a seasoned banking professional with over 14 years of experience specializing in retail banking, audit and compliance, and non-performing asset (NPA) loan recovery. Currently serving as a Senior Manager at Canara Bank in Pune, Sandeep has developed a robust skill set in risk-based internal audits and organizational governance, which are critical to effective banking operations. His career journey includes significant leadership roles, particularly as a branch head in rural India, where he honed his expertise in conflict resolution and team management.
+
+Sandeep holds a Bachelor of Science degree in Mathematics from A.N College Patna, which provides a strong analytical foundation for his work in finance. His professional profile reflects a deep commitment to enhancing banking practices and improving financial performance through strategic oversight and compliance measures.
+
+Throughout his career, Sandeep has demonstrated a consistent ability to recover substandard loans and mitigate risks, contributing to the financial health of the organizations he has served. His proficiency in retail lending, coupled with a thorough understanding of audit processes, equips him to lead teams effectively and drive operational excellence.
+
+Sandeep is actively seeking opportunities that allow him to leverage his extensive banking experience in impactful leadership roles within the financial services industry. He is particularly interested in positions that focus on audit, compliance, and asset recovery, preferably in Pune. With a proactive approach and a dedication to professional growth, Sandeep is a valuable asset for any organization looking to strengthen its banking operations and governance frameworks.</span>
+                <br>
+                <span id="btn-summary-31" class="read-more" onclick="toggleSummary('summary-31')">Read More</span>
+            </td>
+            <td>14 years 0 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/sandeep-kumar/530/1177?id=3b587792-799c-4537-bf53-cbe43971484b" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>33</td>  <!-- SL. No. -->
+            <td>1309</td>
+            <td>Shivek Soni </td>
+            <td>
+                <span id="summary-32" class="summary">Shivek Soni is a dedicated Full-Stack Developer with over a year of professional experience in creating dynamic, scalable, and user-centric web applications. He holds a Bachelor of Technology in Computer Science and Engineering from the National Institute of Technology Hamirpur, where he deepened his understanding of programming, data structures, algorithms, and software engineering principles. His coursework included advanced topics in Cloud Computing and Machine Learning, equipping him with a solid foundation to tackle real-world technological challenges.
+
+Currently employed at Happy People AI, Shivek has played a pivotal role in developing Project Riseon, utilizing technologies such as ReactJS for responsive front-end design and Node.js for robust back-end functionality. He has demonstrated proficiency in managing database operations with Supabase and integrating RESTful APIs, significantly enhancing application performance within an Agile framework. His technical skill set includes expertise in JavaScript, React, Node.js, and Docker, complemented by a strong understanding of database management systems like MongoDB.
+
+Shivek is also a patent holder, with innovations in automated data cleaning systems and sentiment analysis, showcasing his commitment to advancing technology. His accolades include being named Best Player at the Inter-University Basketball Tournament in 2021, underscoring his leadership capabilities. Fluent in Hindi and Punjabi, with intermediate proficiency in English, he possesses strong interpersonal skills such as problem-solving and effective communication.
+
+Shivek seeks full-time opportunities as a Full Stack or Backend Developer in the engineering sector, preferably in Noida, Gurugram, or Delhi, with a flexible hybrid or remote work arrangement. He is open to relocation and expects an annual salary of INR 1,200,000.</span>
+                <br>
+                <span id="btn-summary-32" class="read-more" onclick="toggleSummary('summary-32')">Read More</span>
+            </td>
+            <td>1 years 2 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/shivek-soni/782/1309?id=96ca8997-a4aa-4505-9277-33f4d61d3b98" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>34</td>  <!-- SL. No. -->
+            <td>1347</td>
+            <td>Krishna </td>
+            <td>
+                <span id="summary-33" class="summary">Krishna is an enthusiastic Software Engineer with a Bachelor of Technology in Computer Science and Engineering from the Indian Institute of Technology, Hyderabad, where he excelled in core subjects and participated in hackathons. With over five months of professional experience, he currently works at Mphasis as a Software Engineer, where he has successfully contributed to full-stack development projects that improved client engagement by 30%. His technical expertise includes proficiency in JavaScript, React, and Node.js, along with a solid foundation in HTML/CSS and version control using Git. 
+
+During his internship at Infosys, Krishna gained hands-on experience in software development, collaborating with senior developers and contributing to web application projects. He has further enhanced his skills through certifications such as the JavaScript Developer Certification from W3Schools and a Full Stack Web Development course from Coursera. 
+
+Krishna's research paper, "Innovative Solutions in Full Stack Development for Enhancing Client Engagement," published in the Tech Innovations Journal, showcases his insights into modern development practices. He has been recognized with awards including the Project Excellence Award from Mphasis for his exceptional contributions. 
+
+Fluent in English and Telugu, Krishna possesses strong interpersonal skills, including team collaboration, problem-solving, and adaptability. He is passionate about pursuing a career in product management within the advertising sector, seeking opportunities that allow him to leverage his full-stack development expertise. Krishna is open to roles that enhance user engagement and drive innovation, with a preferred location in Ongole.</span>
+                <br>
+                <span id="btn-summary-33" class="read-more" onclick="toggleSummary('summary-33')">Read More</span>
+            </td>
+            <td>0 years 5 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/krishna/875/1347?id=bdc9c6fb-362f-4040-8e33-70ae2361fffe" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>35</td>  <!-- SL. No. -->
+            <td>1352</td>
+            <td>Shikhar Suri </td>
+            <td>
+                <span id="summary-34" class="summary">Shikhar Suri is a dynamic Director of Growth with over 8 years of experience in product management and strategic marketing. Currently leading growth initiatives at Hootboard, he has successfully driven a 40% increase in monthly active users through innovative, data-driven strategies. Prior to this role, Shikhar served as Marketing Manager at InnovateTech, where his leadership in marketing campaigns consistently exceeded revenue targets by 20%, contributing to significant market share expansion. His career began as a Growth Specialist at GrowthHub, where he implemented strategies that enhanced user engagement and achieved a 15% revenue increase.
+
+Shikhar holds a Master of Business Administration in Marketing and Strategy from the Indian Institute of Management, Ahmedabad, where he focused on advanced marketing strategies and digital transformation projects. He also earned a Bachelor of Technology in Computer Science from Delhi Technological University, where he developed skills in machine learning and data science.
+
+His technical expertise encompasses data analysis, predictive analytics, and digital marketing tools, making him proficient in leveraging data to inform strategic decisions. Shikhar's accomplishments include receiving the prestigious Top Marketing Strategist award in 2022 for his outstanding contributions at InnovateTech.
+
+Fluent in English, Shikhar possesses strong analytical, leadership, and collaboration skills. He is seeking opportunities in technology-focused industries, particularly in growth and marketing roles, with a preference for positions based in Gurgaon. His availability is immediate, with an expected salary aligned with industry standards.</span>
+                <br>
+                <span id="btn-summary-34" class="read-more" onclick="toggleSummary('summary-34')">Read More</span>
+            </td>
+            <td>8 years 7 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/shikhar-suri/881/1352?id=3505d4fe-2f6e-48a7-bcce-54c292c19ac8" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>36</td>  <!-- SL. No. -->
+            <td>1354</td>
+            <td>MEGHANA S </td>
+            <td>
+                <span id="summary-35" class="summary">Meghana S is a detail-oriented Software QA Engineer with over 4 years of experience, primarily at Autonomize AI. She has a proven track record in both manual and automated testing methodologies, achieving a remarkable 30% reduction in bug rates through her meticulous approach to software quality assurance. Meghana holds a Bachelor of Computer Application degree with a specialization in Computer Science from BES Degree College, Bangalore, where she developed a solid foundation in technical principles.
+
+In addition to her degree, Meghana has pursued further education through multiple courses, including Software Testing Fundamentals from Coursera and Six Sigma and RPA Dynamics from the Council of Human Resource Development, UAE. Her technical skill set is impressive, with proficiency in Manual Testing (5/5), Test Case Design (5/5), and Automated Testing (4/5), alongside experience using tools such as JIRA (Advanced), Selenium (Intermediate), and Postman (Intermediate).
+
+Meghana excels in interpersonal skills, showcasing strong communication, team collaboration, analytical thinking, and problem-solving abilities. She is fluent in both English and Kannada, which enhances her capability to work in diverse environments. 
+
+With aspirations to drive quality and innovation in software engineering, Meghana is seeking opportunities that allow her to leverage her expertise in a dynamic setting. She is particularly interested in roles within the technology sector in Bangalore, with a focus on quality assurance and software testing. Her availability is flexible, and she is open to discussing competitive salary expectations.</span>
+                <br>
+                <span id="btn-summary-35" class="read-more" onclick="toggleSummary('summary-35')">Read More</span>
+            </td>
+            <td>4 years 2 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/meghana-s/882/1354?id=fd52caad-60c9-4c2b-bbcb-6c03c95049c1" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>37</td>  <!-- SL. No. -->
+            <td>1355</td>
+            <td>Anny Deb Barma </td>
+            <td>
+                <span id="summary-36" class="summary">Anny Deb Barma is an aspiring Digital Marketing Specialist with a Bachelor of Business Administration (BBA) in Marketing from MIT University of Meghalaya, Shillong, expected to graduate in September 2025. With a strong academic foundation, Anny has engaged in comprehensive coursework including Digital Marketing, Consumer Behavior, and Brand Management. Throughout her educational journey, she has actively participated in marketing clubs and contributed to promotional activities on campus, demonstrating her commitment to applying marketing strategies in practical settings.
+
+Anny has further enhanced her qualifications by completing courses such as Digital Marketing Fundamentals from Google Digital Garage and an Intermediate Module in Microsoft Office, showcasing her proficiency in essential digital tools and analytics. She also attended the Marketing Innovations Conference 2023, where she explored the latest trends and innovations in marketing strategies.
+
+While her professional experience is currently limited, Anny's profile reflects a dynamic skill set in crafting innovative marketing strategies, driving brand engagement, and conducting market research. Her ability to collaborate effectively within teams and create impactful content positions her well for a successful career in digital marketing. 
+
+Anny is based in East Khasi Hills and is eager to transition into roles that leverage her marketing expertise and digital skills. She is open to opportunities within dynamic marketing environments, preferably in locations that foster innovation and creativity. Anny is motivated to contribute to impactful campaigns and is ready to embrace new challenges in her professional journey.</span>
+                <br>
+                <span id="btn-summary-36" class="read-more" onclick="toggleSummary('summary-36')">Read More</span>
+            </td>
+            <td>1 years 0 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/anny-deb-barma/877/1355?id=26786892-80f7-47a2-a8c0-199ee208ac78" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>38</td>  <!-- SL. No. -->
+            <td>1365</td>
+            <td>Avneesh Dubey</td>
+            <td>
+                <span id="summary-37" class="summary">Avneesh Dubey is an ambitious Junior UX Designer with 6 months of practical experience driving impactful design solutions at Happy People AI. Currently pursuing a Bachelor of Design specializing in Animation and Multimedia from Birla Institute of Technology, Mesra, Avneesh has developed a strong foundation in user-centered design methodologies, graphic design, and prototyping through coursework that includes Advanced Physics and Graphic Design Principles. 
+
+His work experience includes internships at notable organizations such as Rotary Club, Pregamie, and AIESEC, where he successfully designed promotional materials and user-friendly visuals, significantly enhancing brand visibility and user engagement. Avneesh's ability to collaborate effectively with cross-functional teams and his commitment to delivering compelling visual narratives have been recognized through achievements like the Best Project Award for exceptional teamwork during his capstone project.
+
+Proficient in tools such as Figma, Adobe Photoshop, and Adobe Illustrator, Avneesh excels in user research, wireframing, and prototyping, with a strong emphasis on creativity and problem-solving. His ongoing learning includes certifications in UI/UX design from Coursera and the Interaction Design Foundation, further solidifying his expertise in the field. 
+
+Avneesh is fluent in English and Hindi, showcasing his excellent communication skills, and is actively seeking full-time opportunities as a UI/UX or Product Designer within the Information Technology, E-commerce, or EdTech sectors. He prefers hybrid work arrangements and is open to relocation, with a notice period of 30 days and an expected salary of ₹500,000 annually.</span>
+                <br>
+                <span id="btn-summary-37" class="read-more" onclick="toggleSummary('summary-37')">Read More</span>
+            </td>
+            <td>0 years 9 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/avneesh/56/1365?id=951bde31-1381-489f-ba90-3730c812f5c6" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>39</td>  <!-- SL. No. -->
+            <td>1369</td>
+            <td>Jiya Mistry </td>
+            <td>
+                <span id="summary-38" class="summary">Jiya Mistry is an aspiring Data Analyst and Digital Marketing Enthusiast with a strong foundation in business principles and a keen interest in data-driven decision-making. Currently pursuing a Bachelor's Degree in Business Administration from Gujarat University, she has excelled in courses such as Data Analysis and Marketing Strategies, enhancing her analytical and strategic thinking skills. Her educational background includes a Higher Secondary Certificate in Commerce from Sankalp International School and a Secondary School Certificate from Shree Ganesh Vidhyalay, where she actively participated in various clubs and competitions that fostered her research and analytical abilities.
+
+Jiya has gained practical knowledge in account management through a specialized training program, where she mastered tools like Microsoft Office Suite and Tally ERP, equipping her with essential skills for financial management and client engagement. She is proficient in technical skills such as Data Analysis, Marketing Strategies, and Statistical Analysis, with a strong command of Microsoft Excel and data visualization techniques. Her interpersonal skills include excellent communication, problem-solving, and adaptability, making her an effective team player.
+
+Fluent in English and proficient in Hindi and Gujarati, Jiya is committed to continuous learning and has engaged in environmental conservation and animal welfare causes. She is currently seeking opportunities in data analysis or digital marketing roles within Ahmedabad, where she can leverage her skills and passion for innovative solutions. With a focus on personal and professional growth, she is eager to contribute to a dynamic team while exploring her interests in photography and global cuisines.</span>
+                <br>
+                <span id="btn-summary-38" class="read-more" onclick="toggleSummary('summary-38')">Read More</span>
+            </td>
+            <td>0 years 0 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/jiya-mistry/910/1369?id=deb92c92-3603-4ca1-b6ff-616d12baed90" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>40</td>  <!-- SL. No. -->
+            <td>1371</td>
+            <td>Priyanka Panchal </td>
+            <td>
+                <span id="summary-39" class="summary">Priyanka Panchal is an aspiring Quality Engineer with over 6 years of experience in the IT sector, specializing in quality engineering and software testing. She holds a Bachelor’s degree in Computer Engineering from Silver Oak College of Engineering & Technology, where she excelled in subjects like Data Structures and Database Management Systems. Priyanka has actively contributed to tech clubs and coding competitions, enhancing her collaborative and problem-solving skills.
+
+In her professional journey, Priyanka has held various roles including Subject Matter Expert at RevoKarmaHub Software and Services Pvt. Ltd., where she improved project efficiency through data analysis and client query resolution. Currently, she is a Quality Engineer Intern at Happy People AI, focusing on executing test cases and ensuring software quality while collaborating with cross-functional teams. Her previous experiences also include roles as a Trainee Software Tester and Quality Analyst Intern, where she developed test cases and contributed to defect tracking, thereby enhancing software reliability.
+
+Priyanka possesses strong technical skills in functional testing, black box testing, and manual testing, alongside intermediate proficiency in tools like TestLink and Mantis. She has completed a certification in Manual Testing and published a research paper on software quality enhancement. Recognized as the "Quality Performer of the Week" at RevoKarmaHub, her commitment to excellence is evident.
+
+Fluent in both English and Hindi, Priyanka is adept in teamwork, analytical thinking, and time management. She prefers opportunities in Information Technology or Communications, with a flexible working preference for remote or hybrid roles. Her expected salary is ₹20,000 per month, and she is open to full-time positions within start-ups, MSMEs, or large corporates.</span>
+                <br>
+                <span id="btn-summary-39" class="read-more" onclick="toggleSummary('summary-39')">Read More</span>
+            </td>
+            <td>6 years 6 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/priyanka-panchal/789/1371?id=ad45ee40-1c21-4278-8bbb-b7fbf957ad7c" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>41</td>  <!-- SL. No. -->
+            <td>1376</td>
+            <td>Bharath B </td>
+            <td>
+                <span id="summary-40" class="summary">Bharath B is an aspiring Software Engineer with over 1 year of experience in editorial support, quality assurance, and data science. He holds a Bachelor of Engineering in Electronics and Communication from Vel Tech High Tech Dr. RR & Dr. SR Engineering College, where he excelled in core subjects and achieved recognition for his final year project—a CubeSat Prototype Simulation. His technical proficiency includes Python, MySQL, and Agile methodologies, supplemented by certifications in web development and data analysis.
+
+In his current role as Editorial Support at Straive, Bharath enhances content accuracy and streamlines editorial processes, demonstrating strong problem-solving abilities and teamwork skills. Previously, as a Quality Analyst at Zebronics, he conducted rigorous inspections of hardware components, improving production quality by 10% and reducing delays. His internship experiences at SL Lumax and Shiash Info Solutions further honed his technical skills, where he engaged in quality control practices and developed machine learning algorithms for data analysis.
+
+Bharath's notable achievements include receiving the 'Best Final Year Project' award and being recognized for 'Outstanding Intern Performance' for significantly increasing user engagement by 30% through a web application. He has published a research paper on web engagement metrics, showcasing his analytical capabilities.
+
+Fluent in English and Tamil, he is a proactive learner, actively participating in workshops and conferences. Bharath is eager to secure a Software Engineer position in a dynamic organization where he can apply his technical skills, creativity, and innovative approaches to drive impactful solutions. He is open to opportunities in Chennai and is available to start immediately.</span>
+                <br>
+                <span id="btn-summary-40" class="read-more" onclick="toggleSummary('summary-40')">Read More</span>
+            </td>
+            <td>1 years 7 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/bharath-b/938/1376?id=d0e9650b-589c-4c0c-b30c-385f8d59b0a1" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>42</td>  <!-- SL. No. -->
+            <td>1381</td>
+            <td>Abhishek </td>
+            <td>
+                <span id="summary-41" class="summary">Abhishek is a dynamic Business Development Leader with over 5 years of experience specializing in B2B sales, strategic marketing, and operational excellence. He holds a Bachelor’s degree in Chemical Engineering from B.M.S. College of Engineering, where he engaged in projects focusing on renewable energy and participated actively in the Chemical Engineering Society.
+
+In his most recent role as Senior Manager - Revenue & Strategy at Woolf, Abhishek established and led the Indian business development unit, driving significant revenue growth through strategic partnerships and effective funnel management. He adeptly engaged with C-level executives to explore collaboration opportunities and optimized processes for the B2B sales team. Prior to this, he served as Senior Business Development Manager and Area Business Head at Think & Learn, where he managed a large team, developed impactful sales strategies, and achieved impressive revenue milestones.
+
+Abhishek possesses exceptional technical skills in Strategic Sales & Marketing, Market & Competitor Analysis, and Go-To-Market Strategy, complemented by strong interpersonal skills such as Team Management and Client Relationship Management. He is proficient in tools including Salesforce, LeadSquare, and HubSpot, enhancing his effectiveness in business analytics and P&L management. His achievements include being recognized as the Top Revenue Generator at Woolf and driving a 35% increase in revenue through innovative sales strategies at Think & Learn.
+
+Fluent in English and Hindi, Abhishek is actively seeking opportunities in the EdTech sector, particularly in strategic sales roles that leverage his expertise in market growth and partnership development. He is open to positions in Bengaluru and is available for immediate engagement.</span>
+                <br>
+                <span id="btn-summary-41" class="read-more" onclick="toggleSummary('summary-41')">Read More</span>
+            </td>
+            <td>5 years 6 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/abhishek/955/1381?id=e77ae192-79c2-4763-90ca-67cf8b8139ef" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>43</td>  <!-- SL. No. -->
+            <td>1390</td>
+            <td>Lesnar Tambun </td>
+            <td>
+                <span id="summary-42" class="summary">Lesnar Tambun is an innovative UI/UX Designer with over 2 years of experience, including an impactful internship at Microsoft. He specializes in creating user-centric digital interfaces and mobile designs, demonstrating a proven ability to enhance user engagement through structured methodologies. Lesnar holds a Senior Secondary Education degree with a focus on Science from SMA Negeri 1 Malang, where he excelled in Physics, Chemistry, and Mathematics, and was recognized for outstanding academic performance with a GPA of 3.61/4.00 from Universitas Brawijaya.
+
+His professional journey includes roles as a UI/UX Designer Intern at Microsoft, where he collaborated on design systems and conducted user research to optimize digital experiences, and as a Freelance UI/UX Designer, where he successfully delivered tailored design solutions for various clients. Lesnar is proficient in tools such as Figma, Adobe Photoshop, and Adobe Illustrator, with technical skills in UI/UX Design, wireframing, prototyping, and responsive web development, all at an advanced level.
+
+Lesnar has also completed notable certifications, including the Google UX Design Professional Certificate, and has published an academic article on user-centric interface design. His achievements include winning the Best Design Award for a mobile app project, showcasing his ability to merge creativity with technology. Fluent in both Indonesian and English, he possesses strong interpersonal skills, including team communication, leadership, and problem-solving.
+
+Based in East Java, Lesnar is eager to leverage his skills in product management and design consultation, ideally seeking opportunities in a dynamic environment that fosters innovation and collaboration.</span>
+                <br>
+                <span id="btn-summary-42" class="read-more" onclick="toggleSummary('summary-42')">Read More</span>
+            </td>
+            <td>2 years 6 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/lesnar-tambun/972/1390?id=cd427afc-fd01-41ac-8c12-7b934ba5bf53" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>44</td>  <!-- SL. No. -->
+            <td>1393</td>
+            <td>Rebecca Cheng </td>
+            <td>
+                <span id="summary-43" class="summary">Rebecca Cheng is a seasoned HR professional with over 20 years of experience in talent management and organizational development, currently serving as the Head of Commercial Operations at Vantive Healthcare Limited. Her career encompasses significant roles, including Senior Human Resources Manager at Baxter Healthcare Ltd, where she played a crucial part in enhancing employee engagement and operational efficiency, contributing to the company being recognized as a top employer. Rebecca holds a Master of Management in Human Resources Management from Macquarie Graduate School of Management and a Bachelor of Business Administration (Hons) in Electronic Commerce and Marketing from City University of Hong Kong.
+
+Her expertise lies in strategic HR management, talent development, performance management, and employee engagement, underscored by her proficiency in tools like SAP, Workday, and PSoft. Rebecca has received certifications as a Situational Leadership II and MBTI Certified Trainer, further solidifying her credentials in leadership and team dynamics. Among her notable achievements are multiple Best Employer Awards from AON Hewitt, reflecting her commitment to fostering a culture of excellence within organizations.
+
+Rebecca's project management skills are highlighted through her leadership in significant initiatives such as office relocations and mergers and acquisitions, demonstrating her ability to navigate complex organizational changes. She is fluent in Cantonese, Mandarin, and English, and is recognized for her strengths in cross-functional team leadership, stakeholder engagement, and coaching.
+
+She is currently seeking opportunities in HR leadership roles within dynamic organizations, preferably in Hong Kong, with a focus on strategic talent solutions and operational excellence.</span>
+                <br>
+                <span id="btn-summary-43" class="read-more" onclick="toggleSummary('summary-43')">Read More</span>
+            </td>
+            <td>20 years 1 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/rebecca-cheng/976/1393?id=d31f13c8-eaa8-4dab-8236-b87a117d5e7c" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>45</td>  <!-- SL. No. -->
+            <td>1403</td>
+            <td>Ayush Gaurkar </td>
+            <td>
+                <span id="summary-44" class="summary">Ayush Gaurkar is a detail-oriented Software Engineer with two years of experience in agile software development, specializing in Java, Spring Boot, and MySQL. He holds a Bachelor of Technology (B.Tech) in Computer Science & Engineering from Ballarpur Institute of Technology, where he gained a strong foundation in software development and engineering principles through various projects, including a final year project focused on automated systems. Currently employed at Techies Infotech Pvt Ltd, Ayush has made significant contributions by developing and optimizing software solutions that enhance system performance. Notably, he improved application performance by 60% through efficient caching and query optimization in a packaging order system and led the development of a CO2 emissions calculation system utilizing Java Spring Boot and Kafka for real-time data processing.
+
+His technical expertise includes RESTful API development, machine learning solutions, and performance optimization. He has earned certifications such as the AWS Certified Solutions Architect – Associate and completed an intensive course in Advanced Java Programming. Ayush's proficiency in tools like Postman, Git, and CI/CD complements his strong interpersonal skills, including team collaboration and problem-solving. He has been recognized with awards such as "Best Intern of the Quarter" from Paramatrix Technologies and "Excellence in Software Development" from Techies Infotech.
+
+Fluent in English and Hindi, Ayush is passionate about environmental conservation and education for underprivileged children. He is currently seeking opportunities in software development, preferably in Pune, Maharashtra, with an emphasis on innovative projects that drive transformative solutions.</span>
+                <br>
+                <span id="btn-summary-44" class="read-more" onclick="toggleSummary('summary-44')">Read More</span>
+            </td>
+            <td>2 years 0 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/ayush-gaurkar/977/1403?id=09bc755f-532a-42ab-9dc8-070f7afc7180" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>46</td>  <!-- SL. No. -->
+            <td>1410</td>
+            <td>AMIT KUMAR </td>
+            <td>
+                <span id="summary-45" class="summary">Amit Kumar is a visionary leader with over 13 years of experience in product management and technology transformation. Currently serving as the Director at Happy People AI, he has successfully driven strategic initiatives that resulted in a remarkable 20% increase in operational efficiency through the implementation of agile methodologies and a culture of collaboration. Previously, as a Senior Product Manager at Tech Innovators Inc., Amit played a pivotal role in the development and launch of innovative products, significantly enhancing market share. His career began as a Product Manager at Innovate Solutions, where he managed product life cycles and ensured alignment with customer expectations.
+
+Amit holds a Master of Business Administration in Product Management from the Indian School of Business, where he engaged in projects related to market analysis and product strategy. He also earned a Bachelor of Technology in Computer Science from the Indian Institute of Technology, Delhi, focusing on software development and algorithms. His technical proficiency spans advanced product management, agile methodologies, strategic planning, and data analysis, complemented by expertise in tools such as JIRA, Trello, and Slack.
+
+His accomplishments include receiving the Leadership Excellence Award from the Product Management Institute and publishing insightful research on operational excellence and product strategies. Amit is fluent in English and Hindi, showcasing exceptional communication and leadership skills. He is now seeking opportunities that leverage his extensive experience in product innovation and strategic leadership, ideally in roles such as CEO or CTO, with a preference for positions located in Hyderabad.</span>
+                <br>
+                <span id="btn-summary-45" class="read-more" onclick="toggleSummary('summary-45')">Read More</span>
+            </td>
+            <td>12 years 10 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/amit-kumar/979/1410?id=430779e4-cdd9-4fa6-9a52-b74d8a4040b5" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>47</td>  <!-- SL. No. -->
+            <td>1463</td>
+            <td>Harshal Jain </td>
+            <td>
+                <span id="summary-46" class="summary">Harshal Jain is a detail-oriented Pharmacy Graduate with over four years of experience in Pharmacovigilance and Safety Data Analysis. He holds a Bachelor of Pharmacy from Savitribai Phule Pune University, where he specialized in Pharmaceutical Sciences and completed a project on Novel Drug Delivery Systems. Currently, he is pursuing a Diploma in Clinical Research to enhance his data-driven decision-making skills and transition into roles in product management and data science.
+
+His professional journey includes roles as a Medical Coder at Credence Resource Management, where he developed expertise in coding insurance claims and collaborating with healthcare professionals to resolve discrepancies. As a Pharmacist at Medical Store, he ensured the accuracy of prescriptions and provided essential drug information to patients. His tenure as a Drug Safety Associate I at Bioclinica Inc and a Junior Safety Data Analyst at Covance honed his skills in case processing, narrative writing, and regulatory compliance.
+
+Harshal possesses strong technical skills in case processing, narrative writing, safety data analysis, and medical coding, with proficiency in tools such as Argus Database and Aris G Database. He is recognized for his problem-solving, communication, and time management abilities, which complement his technical expertise. Fluent in English, Hindi, Marathi, and possessing basic German skills, he is well-equipped for diverse professional environments.
+
+Harshal is open to opportunities in the pharmaceutical and clinical research sectors, preferably in Pune, India. He seeks roles that leverage his analytical skills and passion for improving patient outcomes, with an expected salary commensurate with industry standards.</span>
+                <br>
+                <span id="btn-summary-46" class="read-more" onclick="toggleSummary('summary-46')">Read More</span>
+            </td>
+            <td>4 years 2 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/harshal-jain/1043/1463?id=bcc17d86-c8a5-4cfb-af76-f7fef230875b" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>48</td>  <!-- SL. No. -->
+            <td>1467</td>
+            <td>Kashika </td>
+            <td>
+                <span id="summary-47" class="summary">Kashika is a dynamic Data Scientist with over two years of experience at Amazon, where she leverages data-driven insights to enhance product features and improve user experiences. She holds a Bachelor of Technology in Computer Science and Engineering from the Indian Institute of Technology, Delhi, where she excelled in subjects such as Data Structures, Machine Learning, and Database Management Systems. Her academic background includes advanced coursework in Machine Learning and Data Visualization, complemented by a strong foundation in statistical methods.
+
+In her current role at Amazon, Kashika has developed and implemented machine learning models that predict customer behavior, collaborated with cross-functional teams, and conducted A/B testing to enhance user engagement. Prior to this, she interned at Tech Innovations Inc., where her contributions led to a 30% increase in user engagement through optimized algorithms and strategic data analysis.
+
+Kashika possesses a robust skill set that includes Data Analysis, Machine Learning, Python Programming, and Statistical Modeling, with proficiency in tools such as Tableau, SQL, and TensorFlow. Her professional achievements include the Data-Driven Optimization Award from Tech Innovations Inc. and the Amazon Excellence in Innovation award for her significant contributions to product enhancement.
+
+She is also published in the International Journal of Data Science, highlighting her ability to bridge data science with strategic product management. Fluent in English and Hindi, Kashika is recognized for her problem-solving skills, adaptability, and effective communication. Currently based in Una, India, she is seeking opportunities in software engineering within innovative tech firms, with a preference for roles that allow her to further explore data-driven projects.</span>
+                <br>
+                <span id="btn-summary-47" class="read-more" onclick="toggleSummary('summary-47')">Read More</span>
+            </td>
+            <td>2 years 3 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/kashika/1046/1467?id=fc24900b-fd0f-42ba-ae9a-6c3ad62c40d6" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>49</td>  <!-- SL. No. -->
+            <td>1486</td>
+            <td>Gorimedla Lavanya </td>
+            <td>
+                <span id="summary-48" class="summary">Gorimedla Lavanya is an aspiring Data Scientist, Full Stack Developer, and Machine Learning Engineer with a robust academic foundation in Mathematics, Statistics, and Computer Science. She earned her Bachelor of Science degree from Girraj Government Degree College, Telangana University, where she engaged in projects that emphasized data analysis and computational techniques. Her coursework included Data Structures, Algorithms, and Web Development, equipping her with essential technical skills.
+
+Though she has no formal work experience yet, Lavanya has developed strong technical competencies in Core Java, Python, SQL, Machine Learning, and Data Analytics, achieving high proficiency levels. She is adept at using tools such as Jupyter Notebook and TensorFlow at a beginner level, showcasing her eagerness to grow in the field. Her interpersonal skills are equally impressive, with strengths in team collaboration, effective communication, adaptability, and problem-solving.
+
+Lavanya has contributed to the field through her research paper titled "Leveraging Data for Strategic Growth in IT and HR," published in the International Journal of Data Science and Management. This publication highlights her innovative methodologies in data analytics and strategic decision-making frameworks.
+
+Fluent in English and Telugu, Lavanya is actively involved in supported causes such as Environmental Conservation and Mental Health Awareness. Her hobbies include photography and cycling, reflecting her creative side and love for exploration.
+
+Currently based in Hyderabad, she seeks opportunities in dynamic environments where she can leverage her skills to drive operational efficiencies and contribute to impactful projects. Her career aspirations align with roles that emphasize data-driven insights, machine learning applications, and full-stack development.</span>
+                <br>
+                <span id="btn-summary-48" class="read-more" onclick="toggleSummary('summary-48')">Read More</span>
+            </td>
+            <td>0 years 0 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/gorimedla-lavanya/1065/1486?id=bead1f5e-67e9-44fb-a896-6ece21ddb8be" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>50</td>  <!-- SL. No. -->
+            <td>1464</td>
+            <td>Divya Panchal </td>
+            <td>
+                <span id="summary-49" class="summary">Divya Panchal is a dynamic Graphic Designer with over 2 years of experience creating impactful educational content tailored for government schools in Gujarat. Holding a Bachelor of Design in Graphic Design from the National Institute of Design, Ahmedabad, Divya specialized in advanced typography, digital illustration, and user experience design, culminating in a final project focused on enhancing educational experiences through design.
+
+Currently employed at Samagra Siksha, Divya collaborates with educators to develop visually engaging materials that promote accessibility and foster student engagement. Her previous role as a Digital Marketing Designer at EdTech Innovations saw her contribute to campaigns that increased user interaction by 30%, showcasing her ability to blend creativity with strategic marketing initiatives.
+
+Proficient in Adobe Creative Suite, including Photoshop and Illustrator, Divya possesses advanced skills in user experience design, typography, and color theory. She has earned certifications such as Adobe Certified Expert in Photoshop and completed a course on Advanced Graphic Design Techniques. Her publication, “Innovative Approaches to Educational Graphic Design,” highlights her contributions to the field and showcases her commitment to enhancing learning outcomes through visual storytelling.
+
+Recognized with the Excellence in Educational Content Design award by the Gujarat State Education Department, Divya is also an advocate for environmental conservation and mental health awareness. Fluent in English and Gujarati, she excels in communication, teamwork, and creative problem-solving. Divya is open to opportunities that allow her to further impact the education sector, particularly in roles focused on educational content design and interactive learning tools, ideally situated in Ahmedabad.</span>
+                <br>
+                <span id="btn-summary-49" class="read-more" onclick="toggleSummary('summary-49')">Read More</span>
+            </td>
+            <td>2 years 6 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/divya-panchal/1044/1464?id=250c274f-9120-4fb8-9f4c-150bb1287577" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+        
+        <tr>
+            <td>51</td>  <!-- SL. No. -->
+            <td>1495</td>
+            <td>Anup Dash </td>
+            <td>
+                <span id="summary-50" class="summary">Anup Dash is a Senior UX Researcher with over 10 years of experience in user-centered design and strategic insights, currently based in Hyderabad, India. He holds a Bachelor of Technology in Mechanical Engineering from Biju Patnaik University of Technology, Odisha, where he studied core subjects such as mechanics and thermodynamics, alongside CAD tools. Anup has a proven track record in enhancing user engagement by 70% during his tenure at Infosys and Oracle, where he has successfully led cross-functional collaborations and conducted extensive user research and usability testing.
+
+In his roles, Anup has excelled as a Programming Analyst at Cognizant Technology Solutions and as a Senior Associate Consultant at Infosys, where he developed research methodologies and suggested design changes based on user feedback. Currently at Oracle, he focuses on producing actionable insights to guide product design and development while mentoring a high-performing UX team. His technical skills include user research, usability testing, and data analysis, complemented by proficiency in tools like Sketch, Figma, and Adobe XD.
+
+Anup's contributions have been recognized with awards such as the Best Team Award from Infosys and the Path Finder Award from Cognizant. He has also published a journal article discussing the intersection of AI and data processing in organizational contexts. Fluent in English and Hindi, Anup is an effective communicator and team leader, seeking a Lead UX Researcher or UX Manager position in the Product Management or Information Technology sectors. He prefers remote or hybrid work arrangements with a flexible schedule and is open to relocation.</span>
+                <br>
+                <span id="btn-summary-50" class="read-more" onclick="toggleSummary('summary-50')">Read More</span>
+            </td>
+            <td>10 years 2 months</td>
+            <td><a href="https://riseon.happypeopleai.com/publishedprofile/anup-dash/804/1495?id=395282a0-32a5-468a-a670-f3129efb3d05" class="profile-link" target="_blank">View Profile</a></td>
+        </tr>
+          <!-- Placeholder for dynamic table data -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function toggleSummary(id) {
+            var element = document.getElementById(id);
+            if (element.classList.contains("expanded")) {
+                element.classList.remove("expanded");
+                document.getElementById("btn-" + id).innerText = "Read More";
+            } else {
+                element.classList.add("expanded");
+                document.getElementById("btn-" + id).innerText = "Read Less";
+            }
+        }
+
+        function sortTable(columnIndex) {
+            var table = document.getElementById("profileTable");
+            var rows = Array.from(table.rows).slice(1);
+            var sortedRows = rows.sort((a, b) => {
+                var cellA = a.cells[columnIndex].innerText.trim();
+                var cellB = b.cells[columnIndex].innerText.trim();
+
+                // Numeric Sort for Profile ID
+                if (columnIndex === 1) {
+                    return parseFloat(cellA) - parseFloat(cellB);
+                }
+
+                // String Sort for Name
+                return cellA.localeCompare(cellB);
+            });
+
+            // Toggle sorting order
+            if (table.dataset.sortOrder === "asc") {
+                sortedRows.reverse();
+                table.dataset.sortOrder = "desc";
+            } else {
+                table.dataset.sortOrder = "asc";
+            }
+
+            table.tBodies[0].append(...sortedRows);
+        }
+
+        function searchTable() {
+            var input = document.getElementById("searchBox").value.toLowerCase();
+            var rows = document.querySelectorAll("#profileTable tbody tr");
+
+            rows.forEach(row => {
+                var name = row.cells[2].innerText.toLowerCase();
+                var profileID = row.cells[1].innerText.toLowerCase();
+                row.style.display = name.includes(input) || profileID.includes(input) ? "" : "none";
+            });
+        }
+
+        function filterTable() {
+            var selectedValue = document.getElementById("filterDropdown").value;
+            var rows = document.querySelectorAll("#profileTable tbody tr");
+
+            rows.forEach(row => {
+                var experience = parseFloat(row.cells[4].innerText) || 0;
+                row.style.display = selectedValue === "" || experience >= parseFloat(selectedValue) ? "" : "none";
+            });
+        }
+
+        function sortExperience() {
+    var order = document.getElementById("sortExperienceDropdown").value;
+    var table = document.getElementById("profileTable");
+    var rows = Array.from(table.rows).slice(1);
+
+    if (!order) {
+        // Reset to SL. No. (Ascending)
+        rows.sort((a, b) => {
+            var slNoA = parseInt(a.cells[0].innerText) || 0;
+            var slNoB = parseInt(b.cells[0].innerText) || 0;
+            return slNoA - slNoB;
+        });
+    } else {
+        // Sort by Experience (Converted to Total Months)
+        rows.sort((a, b) => {
+            var expA = extractTotalMonths(a.cells[4].innerText);
+            var expB = extractTotalMonths(b.cells[4].innerText);
+
+            return order === "asc" ? expA - expB : expB - expA;
+        });
+    }
+
+    table.tBodies[0].append(...rows);
+}
+
+// Convert "X years Y months" → Total Months
+function extractTotalMonths(expText) {
+    var match = expText.match(/(\d+)\s*years?\s*(\d*)\s*months?/);
+    var years = match ? parseInt(match[1]) || 0 : 0;
+    var months = match && match[2] ? parseInt(match[2]) || 0 : 0;
+    return years * 12 + months;
+}
+
+
+    </script>
+</body>
+</html>
