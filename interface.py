@@ -95,40 +95,34 @@ def generate_html():
 
 github_url = "https://sai-indupuri.github.io/ResumeChat/profile_data.html"
 
-# Creating a button with an icon that looks like a native Streamlit button
 st.sidebar.markdown(
     f"""
     <style>
     .open-button {{
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 6px 10px;
+        display: block;
+        width: 100%;
+        padding: 8px;
         font-size: 14px;
         font-weight: 500;
-        background-color: #f0f0f5;
+        background-color: #f0f2f6;
         color: black;
-        border-radius: 5px;
         border: 1px solid #ccc;
+        border-radius: 5px;
+        text-align: center;
         text-decoration: none;
-        transition: 0.2s ease-in-out;
+        transition: background-color 0.2s;
     }}
 
     .open-button:hover {{
-        background-color: #e0e0e5;
-        color: black;
-    }}
-
-    .open-button img {{
-        margin-right: 8px;
+        background-color: #e0e3e8;
     }}
     </style>
 
-    <a href="{github_url}" target="_blank" class="open-button">
-    </a>
+    <a href="{github_url}" target="_blank" class="open-button">Open Profile Data</a>
     """,
     unsafe_allow_html=True
 )
+
 
 
 
