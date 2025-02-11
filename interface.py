@@ -96,7 +96,7 @@ def generate_html():
 # Sidebar: Generate and open HTML file dynamically
 if st.sidebar.button("📄 Open Profile Data in New Tab"):
     with st.spinner("Generating Profile Data..."):
-        html_file = generate_html()
+        html_file = r'profile_data.html'
         time.sleep(1)  # Small delay for a smooth experience
 
     # Open the file in a new browser tab
