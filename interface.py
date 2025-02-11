@@ -100,7 +100,7 @@ if st.sidebar.button("📄 Open Profile Data in New Tab"):
         time.sleep(1)  # Small delay for a smooth experience
 
     # Open the file in a new browser tab
-    webbrowser.open_new_tab(html_file)
+    st.sidebar.markdown(f'<a href="{html_file}" target="_blank">Open Profile Data</a>', unsafe_allow_html=True)
 
     # Success message
     st.sidebar.success("Profile Data page opened in a new tab!")
