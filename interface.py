@@ -104,17 +104,18 @@ st.sidebar.markdown(
         padding: 8px;
         font-size: 14px;
         font-weight: 500;
-        background-color: #f0f2f6;
+        background-color: white;
         color: black;
-        border: 1px solid #ccc;
+        border: 1px solid #d3d3d3;
         border-radius: 5px;
         text-align: center;
         text-decoration: none;
-        transition: background-color 0.2s;
+        transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
     }}
 
     .open-button:hover {{
-        background-color: #e0e3e8;
+        background-color: #f0f2f6;
+        color: black;
     }}
     </style>
 
@@ -122,6 +123,7 @@ st.sidebar.markdown(
     """,
     unsafe_allow_html=True
 )
+
 
 
 
