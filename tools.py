@@ -28,7 +28,7 @@ def education_tool(profile_ids, query_embeddings):
     return generic_tool("educations", profile_ids, query_embeddings)
 
 def skills_tool(profile_ids, query_embeddings):
-    return generic_tool("Abilities", profile_ids, query_embeddings)
+    return generic_tool("abilities", profile_ids, query_embeddings)
 
 def intellectual_property_tool(profile_ids, query_embeddings):
     return generic_tool("Intellectual_Property", profile_ids, query_embeddings)
