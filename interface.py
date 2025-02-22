@@ -86,22 +86,22 @@ def query_pipeline(user_query, top_k=10):
 
     # ✅ Step 2: Handle Ranking Queries (Most/Least Experienced)
     if ranking_type:
-        top_profiles = ranking_search(ranking_type, min_experience, max_experience, job_role, skills, top_k)
+        top_profiles = ranking_search(ranking_type, min_experience, max_experience, job_role, skills, top_k=top_k*2)
 
     else:
         # ✅ Step 3: Handle Freshers Separately
         if min_experience == 0 and max_experience == 2:
             print("📌 Running Freshers Metadata Search...")
-            top_profiles = metadata_search(min_experience, max_experience, job_role, top_k)
+            top_profiles = metadata_search(min_experience, max_experience, job_role,top_k=top_k*2)
 
         else:
             # ✅ Step 4: Use Hybrid Search (Metadata + Vector)
-            top_profiles = hybrid_search(user_query, min_experience, max_experience, job_role, skills, top_k)
+            top_profiles = hybrid_search(user_query, min_experience, max_experience, job_role, skills, top_k=top_k*2)
 
         # 🔹 Fallback: If no profiles found via hybrid search, use full vector search
         if not top_profiles:
             print("⚠️ No profiles after hybrid search. Running vector search instead.")
-            top_profiles = vector_search(user_query, top_k)
+            top_profiles = vector_search(user_query, top_k=top_k*2)
 
     # ✅ Step 5: Generate the final answer
     return generate_answer(user_query, top_profiles) if top_profiles else "No matching profiles found."
