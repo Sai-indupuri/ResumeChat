@@ -61,7 +61,7 @@ with st.sidebar:
     st.write("- 'Find candidates with experience between 3 and 7 years.'")
     st.write("- 'Share the details of sourabh purwar and amit kumar'")
     st.write("- 'Show Data Scientists who have worked with TensorFlow.'")
-    st.write("-'Find candidates for product management roles.")
+    st.write("- 'Find candidates for product management roles.'")
     
     st.markdown("### About Us")
     st.write("- [HappyPeopleAI](https://happypeopleai.com/)")
