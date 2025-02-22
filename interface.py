@@ -5,7 +5,7 @@ from langchain.schema import HumanMessage, AIMessage
 
 # ✅ Streamlit UI Configuration
 st.set_page_config(page_title="RiseON Chatbot", layout="wide")
-st.image(r'.\ResumeChat\riseon.png', output_format="PNG", width=250)
+st.image('riseon.png', output_format="PNG", width=250)
 st.title("RiseON Resume Screening")
 
 # ✅ Initialize Chat History
