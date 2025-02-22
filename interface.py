@@ -1,96 +1,22 @@
-import os
-import webbrowser
-import time
-import pandas as pd
 import streamlit as st
+from searches import *
+from llm import extract_query_metadata, generate_answer
 from langchain.schema import HumanMessage, AIMessage
-import concurrent.futures as cf
-from database import fetch_chunks_for_profiles, fetch_profile_summaries
-from embeddings import generate_embedding
-from llm import analyze_query_with_llm, generate_response_with_llm
-from tools import (
-    education_tool,
-    skills_tool,
-    work_experiences_tool,
-    intellectual_property_tool,
-    interest_and_activities_tool,
-    learnings_tool,
-    offerings_tool,
-    portfolio_tool,
-    preferences_tool,
-    profiles_tool,
-    recognition_tool
-)
 
-OPENAI_API_KEY = st.secrets["openai"]["api_key"]
-
-# ✅ Load CSV Data
-CSV_FILE = r"updated_with_embeddings.csv"
-df = pd.read_csv(CSV_FILE, quotechar='"', skipinitialspace=True)
-
-
-# ✅ Streamlit App Configuration
+# ✅ Streamlit UI Configuration
 st.set_page_config(page_title="RiseON Chatbot", layout="wide")
-st.image(r'riseon.png', output_format='PNG', width=250)
+st.image(r'.\ResumeChat\riseon.png', output_format="PNG", width=250)
 st.title("RiseON Resume Screening")
 
-# Initialize session states
+# ✅ Initialize Chat History
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = [AIMessage(content="Hi! How can I assist you?")]
 
-# Initialize matching_profiles before accessing it
-if "matching_profiles" not in st.session_state:
-    st.session_state.matching_profiles = []
+# ✅ Display Chat History
+for message in st.session_state.chat_history:
+    with st.chat_message("AI" if isinstance(message, AIMessage) else "Human"):
+        st.write(message.content)
 
-
-if "requires_retrieval" not in st.session_state:
-    st.session_state.requires_retrieval = True
-
-if "requires_response_generation" not in st.session_state:
-    st.session_state.requires_response_generation = True
-
-# Initialize profile_ids with a default list if not already set
-if "profile_ids" not in st.session_state:
-    st.session_state.profile_ids = df["profileid"].unique().tolist()
-    # print(f"Total profiles : {len(st.session_state.profile_ids)} and {st.session_state.profile_ids}")
-
-
-# Function to generate the HTML file dynamically using index.html template
-def generate_html():
-    # Read the static HTML template
-    with open(r"C:\Users\asus\OneDrive\Desktop\streamlit\ResumeChat\index.html", "r", encoding="utf-8") as file:
-        html_template = file.read()
-
-    # Generate the table rows dynamically
-    table_rows = ""
-    for idx, row in df.iterrows():
-        summary_id = f"summary-{idx}"
-        btn_id = f"btn-summary-{idx}"
-
-        table_rows += f"""
-        <tr>
-            <td>{idx + 1}</td>  <!-- SL. No. -->
-            <td>{row['profileid']}</td>
-            <td>{row['name']}</td>
-            <td>
-                <span id="{summary_id}" class="summary">{row['summary']}</span>
-                <br>
-                <span id="{btn_id}" class="read-more" onclick="toggleSummary('{summary_id}')">Read More</span>
-            </td>
-            <td>{row['total_years_workex']}</td>
-            <td><a href="{row['profile_url']}" class="profile-link" target="_blank">View Profile</a></td>
-        </tr>
-        """
-
-    # Replace the placeholder in the HTML template with the actual table rows
-    html_content = html_template.replace("{{ table_rows }}", table_rows)
-
-    # Save the final rendered HTML file
-    html_file_path = "profile_data.html"
-    with open(html_file_path, "w", encoding="utf-8") as file:
-        file.write(html_content)
-
-    return html_file_path
 
 
 github_url = "https://sai-indupuri.github.io/ResumeChat/profile_data.html"
@@ -127,146 +53,72 @@ st.sidebar.markdown(
 
 
 
-
-# Sidebar controls
+# ✅ Sidebar: Clear Chat & Example Queries
 with st.sidebar:
     st.button("Clear Chat", on_click=lambda: st.session_state.clear())
     st.markdown("### Example Queries")
-    st.write("Here are some examples you can try:")
-    st.markdown("""
-    - "Share the candidates who are freshers or have done internships."
-    - "Share the details of Sourabh Purwar and Amit Kumar."
-    - "Share the candidates who can be a good fit for web development roles."
-    - "Who has an MBA and AI skills?"
-    """)
-
-
-    # Add Company Information
+    st.write("- 'Show freshers with AI skills.'")
+    st.write("- 'Find backend developers with AWS experience.'")
+    st.write("- 'Who are the most experienced AI engineers?'")
     st.markdown("### About Us")
-    st.write("Learn more about our products and services:")
-    
-    # Links to HappyPeopleAI and RiseON
-    st.markdown(
-        """
-        - [HappyPeopleAI](https://happypeopleai.com/)
-        - [RiseON](https://riseon.happypeopleai.com/)
-        """
-    )
-# Display chat history
-for message in st.session_state.chat_history:
-    if isinstance(message, AIMessage):
-        with st.chat_message("AI"):
-            st.write(message.content)
-    elif isinstance(message, HumanMessage):
-        with st.chat_message("Human"):
-            st.write(message.content)
+    st.write("- [HappyPeopleAI](https://happypeopleai.com/)")
+    st.write("- [RiseON](https://riseon.happypeopleai.com/)")
 
 
-def analyze_and_set_flags(user_query):
+def query_pipeline(user_query, top_k=10):
     """
-    Analyze the user query to determine tools and limit.
+    Full retrieval pipeline: 
+    1. Classifies query using LLM.
+    2. Routes query to Hybrid Search (Metadata + Vector) or Ranking Search.
+    3. Returns the best-matched candidates.
     """
-    last_message = st.session_state.chat_history[-1:]
-    analysis = analyze_query_with_llm(user_query, last_message)
-    tools = analysis["tools"]
-    limit = int(analysis.get("limit", 10))
-    return tools, limit
+
+    # ✅ Step 1: Extract Query Metadata using LLM
+    query_metadata = extract_query_metadata(user_query)
+    print(f"Extracted Metadata: {query_metadata}")
+
+    # Extract metadata filters
+    min_experience = query_metadata.get("min_experience")
+    max_experience = query_metadata.get("max_experience")
+    job_role = query_metadata.get("job_role")
+    skills = query_metadata.get("skills", [])
+    ranking_type = query_metadata.get("ranking_type")
+
+    # ✅ Step 2: Handle Ranking Queries (Most/Least Experienced)
+    if ranking_type:
+        top_profiles = ranking_search(ranking_type, min_experience, max_experience, job_role, skills, top_k)
+
+    else:
+        # ✅ Step 3: Handle Freshers Separately
+        if min_experience == 0 and max_experience == 2:
+            print("📌 Running Freshers Metadata Search...")
+            top_profiles = metadata_search(min_experience, max_experience, job_role, top_k)
+
+        else:
+            # ✅ Step 4: Use Hybrid Search (Metadata + Vector)
+            top_profiles = hybrid_search(user_query, min_experience, max_experience, job_role, skills, top_k)
+
+        # 🔹 Fallback: If no profiles found via hybrid search, use full vector search
+        if not top_profiles:
+            print("⚠️ No profiles after hybrid search. Running vector search instead.")
+            top_profiles = vector_search(user_query, top_k)
+
+    # ✅ Step 5: Generate the final answer
+    return generate_answer(user_query, top_profiles) if top_profiles else "No matching profiles found."
 
 
-def prepare_context_for_llm(chat_history, max_context_messages=1):
-    """
-    Prepare a limited chat context for the LLM.
-    """
-    return chat_history[-max_context_messages:]
 
 
-# User input handling
+# ✅ User Query Handling
 user_query = st.chat_input("Type your message...")
+
 if user_query:
     with st.chat_message("Human"):
         st.write(user_query)
         st.session_state.chat_history.append(HumanMessage(content=user_query))
 
-    # Analyze query and set execution flags
-    tools, limit = analyze_and_set_flags(user_query)
-    st.session_state.requires_retrieval = bool(tools)
-
-    # Step 1: Retrieve profiles if needed
-    matching_profiles = []
-    profile_ids = st.session_state.profile_ids  # Get the profile IDs explicitly
-    if st.session_state.requires_retrieval and tools and profile_ids:
-        with st.chat_message("AI"):
-            with st.spinner("Fetching matching profiles..."):
-                query_embedding = generate_embedding(user_query)
-                all_results = []
-
-                # Explicitly pass profile_ids to the thread function
-                def score_tool(tool, profile_ids):
-                    return tool_functions[tool](profile_ids, [query_embedding])
-
-                # Retrieve data using parallel execution
-                tool_functions = {
-                    "educations": education_tool,
-                    "Abilities": skills_tool,
-                    "workexpirences": work_experiences_tool,
-                    "Intellectual_Property": intellectual_property_tool,
-                    "Interest_and_Activities": interest_and_activities_tool,
-                    "learnings": learnings_tool,
-                    "offerings": offerings_tool,
-                    "portfolio": portfolio_tool,
-                    "preferences": preferences_tool,
-                    "profiles": profiles_tool,
-                    "Recognition": recognition_tool
-                }
-
-                with cf.ThreadPoolExecutor(max_workers=5) as executor:
-                    future_to_tool = {executor.submit(score_tool, tool, profile_ids): tool for tool in tools}
-                    for future in cf.as_completed(future_to_tool):
-                        tool = future_to_tool[future]
-                        try:
-                            tool_results = future.result()
-                            all_results.extend(tool_results)
-                        except Exception as e:
-                            print(f"Error processing tool {tool}: {e}")
-
-                # Aggregate results
-                profile_scores = {}
-                for result in all_results:
-                    profile_id = result["profile_id"]
-                    similarity = result["similarity"]
-                    if profile_id in profile_scores:
-                        profile_scores[profile_id].append(similarity)
-                    else:
-                        profile_scores[profile_id] = [similarity]
-
-                matching_profiles = sorted(
-                    [{"profile_id": pid, "average_similarity": sum(scores) / len(scores)}
-                     for pid, scores in profile_scores.items()],
-                    key=lambda x: x["average_similarity"],
-                    reverse=True
-                )[:limit]
-                st.session_state.matching_profiles = matching_profiles
-                # print(f"Matching profiles:{matching_profiles}")
-
-
-    if st.session_state.matching_profiles:
-        profile_ids = [profile["profile_id"] for profile in st.session_state.matching_profiles]
-        profiles_data = fetch_profile_summaries(profile_ids)
-    else:
-        profiles_data = []
-        
-            # Step 2: Generate response
     with st.chat_message("AI"):
         with st.spinner("Generating response..."):
-            recent_history = prepare_context_for_llm(st.session_state.chat_history, max_context_messages=2)
-            # profiles_data = [
-            #     {chunk["chunk_type"]: json.loads(chunk["data"])
-            #     for chunk in fetch_profile_summaries([profile["profile_id"]])}  # Removed .data
-            #     for profile in st.session_state.matching_profiles
-            # ] if st.session_state.matching_profiles else []
-            # print(profiles_data)
-            response_stream = generate_response_with_llm(
-                user_query, profile_details=profiles_data, chat_history=recent_history
-            )
-        streamed_response = st.write_stream(response_stream)
+            response = query_pipeline(user_query, top_k=15)
+        streamed_response = st.write_stream(response)
         st.session_state.chat_history.append(AIMessage(content=streamed_response))
