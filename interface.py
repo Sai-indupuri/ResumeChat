@@ -57,9 +57,12 @@ st.sidebar.markdown(
 with st.sidebar:
     st.button("Clear Chat", on_click=lambda: st.session_state.clear())
     st.markdown("### Example Queries")
-    st.write("- 'Show freshers with AI skills.'")
-    st.write("- 'Find backend developers with AWS experience.'")
-    st.write("- 'Who are the most experienced AI engineers?'")
+    st.write("- 'Show candidates with at least 5 years of experience.'")
+    st.write("- 'Find candidates with experience between 3 and 7 years.'")
+    st.write("- 'Share the details of sourabh purwar and amit kumar'")
+    st.write("- 'Show Data Scientists who have worked with TensorFlow.'")
+    st.write("-'Find candidates for product management roles.")
+    
     st.markdown("### About Us")
     st.write("- [HappyPeopleAI](https://happypeopleai.com/)")
     st.write("- [RiseON](https://riseon.happypeopleai.com/)")
