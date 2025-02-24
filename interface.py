@@ -79,7 +79,7 @@ def query_pipeline(user_query, top_k=10):
     # ✅ Step 1: Extract Query Metadata using LLM
     query_metadata = extract_query_metadata(user_query)
     print(f"Extracted Metadata: {query_metadata}")
-
+    query_type=query_metadata.get("query_type")
     # Extract metadata filters
     min_experience = query_metadata.get("min_experience")
     max_experience = query_metadata.get("max_experience")
