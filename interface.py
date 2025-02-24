@@ -105,7 +105,7 @@ def query_pipeline(user_query, top_k=10):
         if not top_profiles:
             print("⚠️ No profiles after hybrid search. Running vector search instead.")
             top_profiles = vector_search(user_query, top_k=top_k*2)
-        if (query_type=='semantic') and (!ranking_type):
+        if (query_type=='semantic') and (not ranking_type):
             top_profiles=vector_search(user_query,top_k=top_k)
 
     # ✅ Step 5: Generate the final answer
