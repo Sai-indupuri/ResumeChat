@@ -56,7 +56,8 @@ def extract_query_metadata(user_query):
        - Identify specific **job roles** (e.g., "AI Engineer", "Software Developer", "Data Scientist").
        - Extract **skills** (e.g., "Python", "Machine Learning", "NLP", "TensorFlow").
 
-
+    5. **Names related: **
+        - If query asks for any profile information like any names included, set `"query_type":"semantic"`.
         **Return JSON in this exact format:**
         {format_instructions}
 
