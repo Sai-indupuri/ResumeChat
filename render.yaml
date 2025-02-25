@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: resume-chatbot
+    env: python
+    plan: free  # Change to 'starter' or 'pro' if you need better resources
+    region: oregon  # Change as needed
+    buildCommand: |
+      pip install -r requirements.txt
+    startCommand: streamlit run interface.py --server.port $PORT --server.address 0.0.0.0
+    envVars:
+      - key: PORT
+        value: 8080
